@@ -8,6 +8,7 @@ public class InventoryManager : MonoBehaviour
     public static bool isOpen = false;
     int inventorySize = 18, slotsInRow = 3;
     public GameObject inventorySlotPrefab;
+    public Sprite descriptionBackgroundTexture;
 
     public List<Sprite> itemSprites = new List<Sprite>();
     public static List<Item> itemsInInventory = new List<Item>();

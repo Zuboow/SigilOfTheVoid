@@ -6,7 +6,7 @@ using UnityEngine;
 public class InventorySlot : MonoBehaviour
 {
     public GameObject referenceObject;
-    GameObject hoveredItem;
+    GameObject hoveredItem, descriptionBackground;
 
     // Start is called before the first frame update
     void OnEnable()
@@ -16,17 +16,28 @@ public class InventorySlot : MonoBehaviour
 
     private void OnMouseExit()
     {
+        Destroy(hoveredItem);
+        Destroy(descriptionBackground);
+        hoveredItem = null;
+        descriptionBackground = null;
+    }
+
+    private void OnDestroy()
+    {
         if (hoveredItem != null)
         {
             Destroy(hoveredItem);
+            Destroy(descriptionBackground);
             hoveredItem = null;
+            descriptionBackground = null;
         }
     }
 
     // Update is called once per frame
     void OnMouseOver()
     {
-        if (InventoryManager.isOpen) {
+        if (InventoryManager.isOpen)
+        {
             int clickedSlotID = Int32.Parse(name.Split('_')[1]);
             if (InventoryManager.itemsInInventory[clickedSlotID - 1] != null)
             {
@@ -40,7 +51,8 @@ public class InventorySlot : MonoBehaviour
             if (InventoryManager.itemsInInventory[clickedSlotID - 1] != null)
             {
                 Debug.Log(InventoryManager.itemsInInventory[clickedSlotID - 1]._name);
-            } else
+            }
+            else
             {
                 Debug.Log("Empty slot.");
             }
@@ -56,14 +68,17 @@ public class InventorySlot : MonoBehaviour
                     if (InventoryManager.itemsInInventory[clickedSlotID - 1]._healing > 0)
                     {
                         referenceObject.GetComponent<DamageManager>().Heal(InventoryManager.itemsInInventory[clickedSlotID - 1]._healing);
-                    } else
+                    }
+                    else
                     {
                         referenceObject.GetComponent<DamageManager>().DamagePlayer(InventoryManager.itemsInInventory[clickedSlotID - 1]._healing);
                     }
                     referenceObject.GetComponent<InventoryManager>().PlaySound(1);
                     referenceObject.GetComponent<InventoryManager>().DeleteItem(clickedSlotID - 1);
                     Destroy(hoveredItem);
+                    Destroy(descriptionBackground);
                     hoveredItem = null;
+                    descriptionBackground = null;
                 }
             }
             else
@@ -79,17 +94,27 @@ public class InventorySlot : MonoBehaviour
         {
             GameObject descriptionSpawner = new GameObject();
             descriptionSpawner.AddComponent<TextMesh>();
-            descriptionSpawner.GetComponent<TextMesh>().text = string.Format("<b>{0}</b> \n{1} \nValue: {2}", itemName, description, value);
+            descriptionSpawner.GetComponent<TextMesh>().text = string.Format("<b>{0}</b> \n{1} \nValue: {2}G", itemName, description, value);
             descriptionSpawner.GetComponent<TextMesh>().fontSize = 80;
             descriptionSpawner.GetComponent<TextMesh>().characterSize = 0.005f;
             descriptionSpawner.GetComponent<TextMesh>().alignment = TextAlignment.Left;
             descriptionSpawner.GetComponent<TextMesh>().anchor = TextAnchor.LowerLeft;
             GameObject descriptionText = Instantiate(descriptionSpawner, new Vector3(transform.position.x, transform.position.y - 0.1f, 10f), Quaternion.identity);
             Destroy(descriptionSpawner);
+            descriptionSpawner = new GameObject();
+            descriptionSpawner.AddComponent<SpriteRenderer>();
+            descriptionSpawner.GetComponent<SpriteRenderer>().sprite = referenceObject.GetComponent<InventoryManager>().descriptionBackgroundTexture;
+            GameObject descriptionBackgroundItem = Instantiate(descriptionSpawner, new Vector3(descriptionText.transform.position.x - 0.02f, descriptionText.transform.position.y + 0.18f, 10f), Quaternion.identity);
+            Destroy(descriptionSpawner);
             descriptionText.GetComponent<MeshRenderer>().sortingLayerName = "UI";
-            descriptionText.GetComponent<MeshRenderer>().sortingOrder = 17;
+            descriptionText.GetComponent<MeshRenderer>().sortingOrder = 18;
             descriptionText.transform.parent = referenceObject.transform;
             hoveredItem = descriptionText;
+
+            descriptionBackgroundItem.GetComponent<SpriteRenderer>().sortingLayerName = "UI";
+            descriptionBackgroundItem.GetComponent<SpriteRenderer>().sortingOrder = 17;
+            descriptionBackgroundItem.transform.parent = referenceObject.transform;
+            descriptionBackground = descriptionBackgroundItem;
         }
     }
 }
