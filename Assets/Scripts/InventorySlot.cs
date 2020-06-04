@@ -16,13 +16,10 @@ public class InventorySlot : MonoBehaviour
 
     private void OnMouseExit()
     {
-        if (hoveredItem != null)
-        {
-            Destroy(hoveredItem);
-            Destroy(descriptionBackground);
-            hoveredItem = null;
-            descriptionBackground = null;
-        }
+        Destroy(hoveredItem);
+        Destroy(descriptionBackground);
+        hoveredItem = null;
+        descriptionBackground = null;
     }
 
     private void OnDestroy()
@@ -103,10 +100,11 @@ public class InventorySlot : MonoBehaviour
             descriptionSpawner.GetComponent<TextMesh>().alignment = TextAlignment.Left;
             descriptionSpawner.GetComponent<TextMesh>().anchor = TextAnchor.LowerLeft;
             GameObject descriptionText = Instantiate(descriptionSpawner, new Vector3(transform.position.x, transform.position.y - 0.1f, 10f), Quaternion.identity);
+            Destroy(descriptionSpawner);
             descriptionSpawner = new GameObject();
             descriptionSpawner.AddComponent<SpriteRenderer>();
             descriptionSpawner.GetComponent<SpriteRenderer>().sprite = referenceObject.GetComponent<InventoryManager>().descriptionBackgroundTexture;
-            GameObject descriptionBackgroundItem = Instantiate(descriptionSpawner, new Vector3(descriptionText.transform.position.x-0.02f, descriptionText.transform.position.y +0.18f, 10f), Quaternion.identity);
+            GameObject descriptionBackgroundItem = Instantiate(descriptionSpawner, new Vector3(descriptionText.transform.position.x - 0.02f, descriptionText.transform.position.y + 0.18f, 10f), Quaternion.identity);
             Destroy(descriptionSpawner);
             descriptionText.GetComponent<MeshRenderer>().sortingLayerName = "UI";
             descriptionText.GetComponent<MeshRenderer>().sortingOrder = 18;
