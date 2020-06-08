@@ -149,7 +149,13 @@ public class InventoryManager : MonoBehaviour
                 return true;
             } else
             {
-                return false;
+                itemsInInventory[ItemReplacer.originalSlot] = itemsInInventory[slotNumber];
+                itemsInInventory[slotNumber] = (new Item(spriteName, name, description, value, quantity, sprite, usableItem, healing));
+                Debug.Log("" + name + " has changed its slot.");
+                if (isOpen) ReloadInventory();
+                Destroy(ItemReplacer.draggedItem);
+                ItemReplacer.itemDragged = false;
+                return true;
             }
         }
     }

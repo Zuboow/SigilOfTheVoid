@@ -58,16 +58,15 @@ public class InventorySlot : MonoBehaviour
             {
                 UseItem();
             }
-        } else
+        }
+        else
         {
             if (Input.GetMouseButtonDown(0))
             {
                 int clickedSlotID = Int32.Parse(name.Split('_')[1]);
-                if (InventoryManager.itemsInInventory[clickedSlotID - 1] == null)
-                {
-                    Item draggedItem = ItemReplacer.draggedItemInstance;
-                    referenceObject.GetComponent<InventoryManager>().AddItem(draggedItem.spriteName, draggedItem.icon, draggedItem.name, draggedItem.description, draggedItem.value, 1, draggedItem.usableItem, draggedItem.healing, clickedSlotID - 1);
-                }
+
+                Item draggedItem = ItemReplacer.draggedItemInstance;
+                referenceObject.GetComponent<InventoryManager>().AddItem(draggedItem.spriteName, draggedItem.icon, draggedItem.name, draggedItem.description, draggedItem.value, 1, draggedItem.usableItem, draggedItem.healing, clickedSlotID - 1);
             }
         }
     }

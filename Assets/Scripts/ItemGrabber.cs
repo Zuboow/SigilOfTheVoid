@@ -15,7 +15,7 @@ public class ItemGrabber : MonoBehaviour
     // Update is called once per frame
     void OnMouseOver()
     {
-        if (Input.GetMouseButtonDown(0) && referenceObject.GetComponent<DamageManager>().healthAmount > 0)
+        if (Input.GetMouseButtonDown(0) && referenceObject.GetComponent<DamageManager>().healthAmount > 0 && !ItemReplacer.itemDragged)
         {
             TextAsset jsonData = referenceObject.GetComponent<InventoryManager>().itemsJsonFile;
             Items values = JsonUtility.FromJson<Items>(jsonData.text);
