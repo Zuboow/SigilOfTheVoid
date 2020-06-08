@@ -112,28 +112,45 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-    public bool AddItem(string spriteName, Sprite sprite, string name, string description, int value, int quantity, bool usableItem, int healing)
+    public bool AddItem(string spriteName, Sprite sprite, string name, string description, int value, int quantity, bool usableItem, int healing, int slotNumber)
     {
-        int freeSlotID = -1;
-        for (int x = 0; x < itemsInInventory.Count; x++)
+        if (slotNumber == -1)
         {
-            if (itemsInInventory[x] == null)
+            int freeSlotID = -1;
+            for (int x = 0; x < itemsInInventory.Count; x++)
             {
-                freeSlotID = x;
-                break;
+                if (itemsInInventory[x] == null)
+                {
+                    freeSlotID = x;
+                    break;
+                }
             }
-        }
-        if (freeSlotID != -1)
+            if (freeSlotID != -1)
+            {
+                itemsInInventory[freeSlotID] = (new Item(spriteName, name, description, value, quantity, sprite, usableItem, healing));
+                Debug.Log("" + name + " added to inventory.");
+                if (isOpen) ReloadInventory();
+                return true;
+            }
+            else
+            {
+                Debug.Log("Inventory full.");
+                return false;
+            }
+        } else
         {
-            itemsInInventory[freeSlotID] = (new Item(spriteName, name, description, value, quantity, sprite, usableItem, healing));
-            Debug.Log("" + name + " added to inventory.");
-            if (isOpen) ReloadInventory();
-            return true;
-        }
-        else
-        {
-            Debug.Log("Inventory full.");
-            return false;
+            if (itemsInInventory[slotNumber] == null)
+            {
+                itemsInInventory[slotNumber] = (new Item(spriteName, name, description, value, quantity, sprite, usableItem, healing));
+                Debug.Log("" + name + " has changed its slot.");
+                if (isOpen) ReloadInventory();
+                Destroy(ItemReplacer.draggedItem);
+                ItemReplacer.itemDragged = false;
+                return true;
+            } else
+            {
+                return false;
+            }
         }
     }
 

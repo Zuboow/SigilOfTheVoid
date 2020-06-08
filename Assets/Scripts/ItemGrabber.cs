@@ -25,7 +25,7 @@ public class ItemGrabber : MonoBehaviour
                 {
                     referenceObject.GetComponent<AudioPlayer>().PlaySound(4);
                     referenceObject.GetComponent<InventoryManager>().AddItem(
-                        i.spriteName, this.GetComponent<SpriteRenderer>().sprite, i.name, i.description, i.value, 1, i.usableItem, i.healing);
+                        i.spriteName, this.GetComponent<SpriteRenderer>().sprite, i.name, i.description, i.value, 1, i.usableItem, i.healing, -1);
                     Destroy(gameObject);
                     break;
                 }

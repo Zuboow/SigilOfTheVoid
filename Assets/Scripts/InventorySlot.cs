@@ -36,25 +36,39 @@ public class InventorySlot : MonoBehaviour
     // Update is called once per frame
     void OnMouseOver()
     {
-        if (InventoryManager.isOpen)
+        if (!ItemReplacer.itemDragged)
         {
-            int clickedSlotID = Int32.Parse(name.Split('_')[1]);
-            if (InventoryManager.itemsInInventory[clickedSlotID - 1] != null)
+            if (InventoryManager.isOpen)
             {
-                ShowDescription(InventoryManager.itemsInInventory[clickedSlotID - 1].name, InventoryManager.itemsInInventory[clickedSlotID - 1].description, InventoryManager.itemsInInventory[clickedSlotID - 1].value);
+                int clickedSlotID = Int32.Parse(name.Split('_')[1]);
+                if (InventoryManager.itemsInInventory[clickedSlotID - 1] != null)
+                {
+                    ShowDescription(InventoryManager.itemsInInventory[clickedSlotID - 1].name, InventoryManager.itemsInInventory[clickedSlotID - 1].description, InventoryManager.itemsInInventory[clickedSlotID - 1].value);
+                }
             }
-        }
-        if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0))
+            {
+                DragItem();
+            }
+            if (Input.GetMouseButtonDown(1))
+            {
+                DropItem();
+            }
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                UseItem();
+            }
+        } else
         {
-            DragItem();
-        }
-        if (Input.GetMouseButtonDown(1))
-        {
-            DropItem();
-        }
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            UseItem();   
+            if (Input.GetMouseButtonDown(0))
+            {
+                int clickedSlotID = Int32.Parse(name.Split('_')[1]);
+                if (InventoryManager.itemsInInventory[clickedSlotID - 1] == null)
+                {
+                    Item draggedItem = ItemReplacer.draggedItemInstance;
+                    referenceObject.GetComponent<InventoryManager>().AddItem(draggedItem.spriteName, draggedItem.icon, draggedItem.name, draggedItem.description, draggedItem.value, 1, draggedItem.usableItem, draggedItem.healing, clickedSlotID - 1);
+                }
+            }
         }
     }
 
@@ -140,7 +154,13 @@ public class InventorySlot : MonoBehaviour
         int clickedSlotID = Int32.Parse(name.Split('_')[1]);
         if (InventoryManager.itemsInInventory[clickedSlotID - 1] != null)
         {
-            
+            ItemReplacer.DragItem(InventoryManager.itemsInInventory[clickedSlotID - 1]);
+
+            referenceObject.GetComponent<InventoryManager>().DeleteItem(clickedSlotID - 1);
+            Destroy(hoveredItem);
+            Destroy(descriptionBackground);
+            hoveredItem = null;
+            descriptionBackground = null;
         }
         else
         {
