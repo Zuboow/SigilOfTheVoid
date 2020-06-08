@@ -7,12 +7,16 @@ public class SpriteLoader : MonoBehaviour
     // Start is called before the first frame update
     void OnEnable()
     {
-        GetComponent<SpriteRenderer>().sprite = LoadSprite(name);
+        transform.localScale = new Vector3(0.6f, 0.6f);
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (GetComponent<SpriteRenderer>().sprite == null)
+        {
+            GetComponent<SpriteRenderer>().sprite = LoadSprite(name);
+        }
     }
 
     Sprite LoadSprite(string name)

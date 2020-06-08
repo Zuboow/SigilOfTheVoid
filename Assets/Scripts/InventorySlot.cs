@@ -44,47 +44,17 @@ public class InventorySlot : MonoBehaviour
                 ShowDescription(InventoryManager.itemsInInventory[clickedSlotID - 1].name, InventoryManager.itemsInInventory[clickedSlotID - 1].description, InventoryManager.itemsInInventory[clickedSlotID - 1].value);
             }
         }
-
-        if (Input.GetMouseButtonDown(1)) // dropping object <- to do
-        {
-            int clickedSlotID = Int32.Parse(name.Split('_')[1]);
-            if (InventoryManager.itemsInInventory[clickedSlotID - 1] != null)
-            {
-                Debug.Log(InventoryManager.itemsInInventory[clickedSlotID - 1].name);
-            }
-            else
-            {
-                Debug.Log("Empty slot.");
-            }
-        }
         if (Input.GetMouseButtonDown(0))
         {
-            int clickedSlotID = Int32.Parse(name.Split('_')[1]);
-            if (InventoryManager.itemsInInventory[clickedSlotID - 1] != null)
-            {
-                if (InventoryManager.itemsInInventory[clickedSlotID - 1].usableItem)
-                {
-                    Debug.Log(InventoryManager.itemsInInventory[clickedSlotID - 1].name + " eaten.");
-                    if (InventoryManager.itemsInInventory[clickedSlotID - 1].healing > 0)
-                    {
-                        referenceObject.GetComponent<DamageManager>().Heal(InventoryManager.itemsInInventory[clickedSlotID - 1].healing);
-                    }
-                    else
-                    {
-                        referenceObject.GetComponent<DamageManager>().DamagePlayer(InventoryManager.itemsInInventory[clickedSlotID - 1].healing);
-                    }
-                    referenceObject.GetComponent<AudioPlayer>().PlaySound(1);
-                    referenceObject.GetComponent<InventoryManager>().DeleteItem(clickedSlotID - 1);
-                    Destroy(hoveredItem);
-                    Destroy(descriptionBackground);
-                    hoveredItem = null;
-                    descriptionBackground = null;
-                }
-            }
-            else
-            {
-                Debug.Log("Empty slot.");
-            }
+            DragItem();
+        }
+        if (Input.GetMouseButtonDown(1))
+        {
+            DropItem();
+        }
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            UseItem();   
         }
     }
 
@@ -115,6 +85,66 @@ public class InventorySlot : MonoBehaviour
             descriptionBackgroundItem.GetComponent<SpriteRenderer>().sortingOrder = 17;
             descriptionBackgroundItem.transform.parent = referenceObject.transform;
             descriptionBackground = descriptionBackgroundItem;
+        }
+    }
+
+    void UseItem()
+    {
+        int clickedSlotID = Int32.Parse(name.Split('_')[1]);
+        if (InventoryManager.itemsInInventory[clickedSlotID - 1] != null)
+        {
+            if (InventoryManager.itemsInInventory[clickedSlotID - 1].usableItem)
+            {
+                Debug.Log(InventoryManager.itemsInInventory[clickedSlotID - 1].name + " eaten.");
+                if (InventoryManager.itemsInInventory[clickedSlotID - 1].healing > 0)
+                {
+                    referenceObject.GetComponent<DamageManager>().Heal(InventoryManager.itemsInInventory[clickedSlotID - 1].healing);
+                }
+                else
+                {
+                    referenceObject.GetComponent<DamageManager>().DamagePlayer(InventoryManager.itemsInInventory[clickedSlotID - 1].healing);
+                }
+                referenceObject.GetComponent<AudioPlayer>().PlaySound(1);
+                referenceObject.GetComponent<InventoryManager>().DeleteItem(clickedSlotID - 1);
+                Destroy(hoveredItem);
+                Destroy(descriptionBackground);
+                hoveredItem = null;
+                descriptionBackground = null;
+            }
+        }
+        else
+        {
+            Debug.Log("Empty slot.");
+        }
+    }
+
+    void DropItem()
+    {
+        int clickedSlotID = Int32.Parse(name.Split('_')[1]);
+        if (InventoryManager.itemsInInventory[clickedSlotID - 1] != null)
+        {
+            referenceObject.GetComponent<InventoryManager>().DropItem(clickedSlotID - 1);
+            Destroy(hoveredItem);
+            Destroy(descriptionBackground);
+            hoveredItem = null;
+            descriptionBackground = null;
+        }
+        else
+        {
+            Debug.Log("Empty slot.");
+        }
+    }
+
+    void DragItem()
+    {
+        int clickedSlotID = Int32.Parse(name.Split('_')[1]);
+        if (InventoryManager.itemsInInventory[clickedSlotID - 1] != null)
+        {
+            
+        }
+        else
+        {
+            Debug.Log("Empty slot.");
         }
     }
 }
