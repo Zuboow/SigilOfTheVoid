@@ -154,7 +154,7 @@ public class InventorySlot : MonoBehaviour
         int clickedSlotID = Int32.Parse(name.Split('_')[1]);
         if (InventoryManager.itemsInInventory[clickedSlotID - 1] != null)
         {
-            ItemReplacer.DragItem(InventoryManager.itemsInInventory[clickedSlotID - 1]);
+            ItemReplacer.DragItem(InventoryManager.itemsInInventory[clickedSlotID - 1], clickedSlotID - 1);
 
             referenceObject.GetComponent<InventoryManager>().DeleteItem(clickedSlotID - 1);
             Destroy(hoveredItem);
