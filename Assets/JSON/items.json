@@ -29,6 +29,16 @@
 			"healing": 12,
 			"usableItem": true,
 			"icon": null
+		},
+		{
+			"spriteName": "WoodenLog",
+			"name": "Wooden Log",
+			"description": "Basic building resource. Squirrels not included.",
+			"value": 14,
+			"quantity": 1,
+			"healing": 0,
+			"usableItem": false,
+			"icon": null
 		}
 	]
 }
