@@ -2,22 +2,29 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class Item
 {
-    public string _name, _description;
-    public int _value, _quantity, _slotNumber, _healing;
-    public bool _healingItem;
-    public Sprite _icon;
+    public string spriteName, name, description;
+    public int value, quantity, healing;
+    public bool usableItem;
+    public Sprite icon;
 
-    public Item(string name, string description, int value, int quantity, Sprite icon, int slotNumber, bool healingItem, int healing)
+    public Item(string _spriteName, string _name, string _description, int _value, int _quantity, Sprite _icon, bool _usableItem, int _healing)
     {
-        _name = name;
-        _description = description;
-        _value = value;
-        _quantity = quantity;
-        _icon = icon;
-        _slotNumber = slotNumber;
-        _healingItem = healingItem;
-        _healing = healing;
+        spriteName = _spriteName;
+        name = _name;
+        description = _description;
+        value = _value;
+        quantity = _quantity;
+        icon = _icon;
+        usableItem = _usableItem;
+        healing = _healing;
     }
+}
+
+[System.Serializable]
+public class Items
+{
+    public Item[] items;
 }

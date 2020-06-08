@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class InventoryManager : MonoBehaviour
 {
-    //working version
     public static bool isOpen = false;
     int inventorySize = 18, slotsInRow = 3;
     public GameObject inventorySlotPrefab;
     public Sprite descriptionBackgroundTexture;
+    public TextAsset itemsJsonFile;
 
-    public List<Sprite> itemSprites = new List<Sprite>();
     public static List<Item> itemsInInventory = new List<Item>();
-    public List<AudioClip> inventorySoundEffects = new List<AudioClip>();
 
     List<GameObject> inventorySlots = new List<GameObject>();
     List<GameObject> itemSpritesFromInventory = new List<GameObject>();
@@ -38,22 +36,11 @@ public class InventoryManager : MonoBehaviour
         {
             CloseInventory();
         }
-
-        if (Input.GetKeyDown(KeyCode.E) && GetComponent<DamageManager>().healthAmount > 0)
-        {
-            PlaySound(4);
-            AddItem("CookedMeatIcon", "Cooked Meat", "Has lots of proteins. Very popular in Gaul.", 7, 1, true, 35);
-        }
-        if (Input.GetKeyDown(KeyCode.R) && GetComponent<DamageManager>().healthAmount > 0)
-        {
-            PlaySound(4);
-            AddItem("RawMeatIcon", "Raw Meat", "I'm pretty sure I should cook it first...", 3, 1, true, -15);
-        }
     }
 
     void OpenInventory()
     {
-        PlaySound(2);
+        GetComponent<AudioPlayer>().PlaySound(2);
         slotOffset = 0f;
         rowOffset = 0f;
         for (int a = 1; a < inventorySize + 1; a++)
@@ -65,7 +52,7 @@ public class InventoryManager : MonoBehaviour
             {
                 GameObject itemInInventorySpawner = new GameObject();
                 itemInInventorySpawner.AddComponent<SpriteRenderer>();
-                itemInInventorySpawner.GetComponent<SpriteRenderer>().sprite = itemsInInventory[a - 1]._icon;
+                itemInInventorySpawner.GetComponent<SpriteRenderer>().sprite = itemsInInventory[a - 1].icon;
                 itemInInventorySpawner.GetComponent<SpriteRenderer>().sortingLayerName = "UI";
                 itemInInventorySpawner.GetComponent<SpriteRenderer>().sortingOrder = 16;
                 GameObject itemSpriteInSlot = Instantiate(itemInInventorySpawner, new Vector3(transform.localPosition.x - 1.55f + slotOffset, transform.localPosition.y + 0.4f - rowOffset, 16f), Quaternion.identity);
@@ -82,7 +69,7 @@ public class InventoryManager : MonoBehaviour
 
     public void CloseInventory()
     {
-        PlaySound(3);
+        GetComponent<AudioPlayer>().PlaySound(3);
 
         for (int x = 0; x < inventorySlots.Count; x++)
         {
@@ -113,7 +100,7 @@ public class InventoryManager : MonoBehaviour
             {
                 GameObject itemInInventorySpawner = new GameObject();
                 itemInInventorySpawner.AddComponent<SpriteRenderer>();
-                itemInInventorySpawner.GetComponent<SpriteRenderer>().sprite = itemsInInventory[a - 1]._icon;
+                itemInInventorySpawner.GetComponent<SpriteRenderer>().sprite = itemsInInventory[a - 1].icon;
                 itemInInventorySpawner.GetComponent<SpriteRenderer>().sortingLayerName = "UI";
                 itemInInventorySpawner.GetComponent<SpriteRenderer>().sortingOrder = 16;
                 GameObject itemSpriteInSlot = Instantiate(itemInInventorySpawner, new Vector3(transform.localPosition.x - 1.55f + slotOffset, transform.localPosition.y + 0.4f - rowOffset, 16f), Quaternion.identity);
@@ -125,7 +112,7 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-    void AddItem(string spriteName, string name, string description, int value, int quantity, bool healingItem, int healing)
+    public bool AddItem(string spriteName, Sprite sprite, string name, string description, int value, int quantity, bool usableItem, int healing)
     {
         int freeSlotID = -1;
         for (int x = 0; x < itemsInInventory.Count; x++)
@@ -138,20 +125,15 @@ public class InventoryManager : MonoBehaviour
         }
         if (freeSlotID != -1)
         {
-            foreach (Sprite s in itemSprites)
-            {
-                if (s.name == spriteName)
-                {
-                    itemsInInventory[freeSlotID] = (new Item(name, description, value, quantity, s, freeSlotID, healingItem, healing));
-                    Debug.Log(""+ name +" added to inventory.");
-                    if (isOpen) ReloadInventory();
-                    break;
-                }
-            }
+            itemsInInventory[freeSlotID] = (new Item(spriteName, name, description, value, quantity, sprite, usableItem, healing));
+            Debug.Log("" + name + " added to inventory.");
+            if (isOpen) ReloadInventory();
+            return true;
         }
         else
         {
             Debug.Log("Inventory full.");
+            return false;
         }
     }
 
@@ -161,26 +143,5 @@ public class InventoryManager : MonoBehaviour
         if (isOpen) ReloadInventory();
     }
 
-    public void PlaySound(int type)
-    {
-        switch (type)
-        {
-            case 1:
-                GetComponent<AudioSource>().clip = inventorySoundEffects[0];
-                GetComponent<AudioSource>().Play();
-                break;
-            case 2:
-                GetComponent<AudioSource>().clip = inventorySoundEffects[1];
-                GetComponent<AudioSource>().Play();
-                break;
-            case 3:
-                GetComponent<AudioSource>().clip = inventorySoundEffects[2];
-                GetComponent<AudioSource>().Play();
-                break;
-            case 4:
-                GetComponent<AudioSource>().clip = inventorySoundEffects[3];
-                GetComponent<AudioSource>().Play();
-                break;
-        }
-    }
+    
 }

@@ -1,0 +1,34 @@
+{
+	"items": [
+		{
+			"spriteName": "CookedMeat",
+			"name": "Cooked Meat",
+			"description": "Has lots of proteins. Very popular in Gaul.",
+			"value": 7,
+			"quantity": 1,
+			"healing": 35,
+			"usableItem": true,
+			"icon": null
+		},
+		{
+			"spriteName": "RawMeat",
+			"name": "Raw Meat",
+			"description": "I'm pretty sure I should cook it first...",
+			"value": 3,
+			"quantity": 1,
+			"healing": -8,
+			"usableItem": true,
+			"icon": null
+		},
+		{
+			"spriteName": "Apple",
+			"name": "Apple",
+			"description": "It is very juicy!",
+			"value": 6,
+			"quantity": 1,
+			"healing": 12,
+			"usableItem": true,
+			"icon": null
+		}
+	]
+}
