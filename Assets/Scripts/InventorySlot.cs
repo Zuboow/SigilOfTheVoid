@@ -43,7 +43,7 @@ public class InventorySlot : MonoBehaviour
                 int clickedSlotID = Int32.Parse(name.Split('_')[1]);
                 if (InventoryManager.itemsInInventory[clickedSlotID - 1] != null)
                 {
-                    ShowDescription(InventoryManager.itemsInInventory[clickedSlotID - 1].name, InventoryManager.itemsInInventory[clickedSlotID - 1].description, InventoryManager.itemsInInventory[clickedSlotID - 1].value);
+                    ShowDescription(InventoryManager.itemsInInventory[clickedSlotID - 1].name, InventoryManager.itemsInInventory[clickedSlotID - 1].description, InventoryManager.itemsInInventory[clickedSlotID - 1].value, InventoryManager.itemsInInventory[clickedSlotID - 1].usableItem);
                 }
             }
             if (Input.GetMouseButtonDown(0))
@@ -71,26 +71,29 @@ public class InventorySlot : MonoBehaviour
         }
     }
 
-    void ShowDescription(string itemName, string description, int value)
+    void ShowDescription(string itemName, string description, int value, bool usable)
     {
         if (hoveredItem == null)
         {
             GameObject descriptionSpawner = new GameObject();
             descriptionSpawner.AddComponent<TextMesh>();
-            descriptionSpawner.GetComponent<TextMesh>().text = string.Format("<b>{0}</b> \n{1} \nValue: {2}G", itemName, description, value);
-            descriptionSpawner.GetComponent<TextMesh>().fontSize = 80;
+            descriptionSpawner.GetComponent<TextMesh>().text = string.Format("<b>{0}</b> \n{1} \nValue: {2}G" + (usable == true ? "\n\n<color='green'>(E)</color> Use" : ""), itemName, description, value);
+            descriptionSpawner.GetComponent<TextMesh>().fontSize = 85;
             descriptionSpawner.GetComponent<TextMesh>().characterSize = 0.005f;
             descriptionSpawner.GetComponent<TextMesh>().alignment = TextAlignment.Left;
-            descriptionSpawner.GetComponent<TextMesh>().anchor = TextAnchor.LowerLeft;
+            descriptionSpawner.GetComponent<TextMesh>().anchor = TextAnchor.UpperLeft;
             GameObject descriptionText = Instantiate(descriptionSpawner, new Vector3(transform.position.x, transform.position.y - 0.1f, 10f), Quaternion.identity);
             Destroy(descriptionSpawner);
             descriptionSpawner = new GameObject();
             descriptionSpawner.AddComponent<SpriteRenderer>();
             descriptionSpawner.GetComponent<SpriteRenderer>().sprite = referenceObject.GetComponent<InventoryManager>().descriptionBackgroundTexture;
-            GameObject descriptionBackgroundItem = Instantiate(descriptionSpawner, new Vector3(descriptionText.transform.position.x - 0.02f, descriptionText.transform.position.y + 0.18f, 10f), Quaternion.identity);
+            GameObject descriptionBackgroundItem = Instantiate(descriptionSpawner, new Vector3(descriptionText.transform.position.x - 0.02f, descriptionText.transform.position.y + 0.01f, 10f), Quaternion.identity);
             Destroy(descriptionSpawner);
             descriptionText.GetComponent<MeshRenderer>().sortingLayerName = "UI";
             descriptionText.GetComponent<MeshRenderer>().sortingOrder = 18;
+            descriptionText.GetComponent<TextMesh>().font = referenceObject.GetComponent<InventoryManager>().pixelatedFont;
+            descriptionText.GetComponent<MeshRenderer>().material = referenceObject.GetComponent<InventoryManager>().pixelatedFont.material;
+
             descriptionText.transform.parent = referenceObject.transform;
             hoveredItem = descriptionText;
 
