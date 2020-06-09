@@ -9,6 +9,7 @@ public class InventoryManager : MonoBehaviour
     public GameObject inventorySlotPrefab;
     public Sprite descriptionBackgroundTexture;
     public TextAsset itemsJsonFile;
+    public Font pixelatedFont;
 
     public static List<Item> itemsInInventory = new List<Item>();
 
