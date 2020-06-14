@@ -13,8 +13,9 @@ GameObject:
   - component: {fileID: 6426492127485721558}
   - component: {fileID: 6426492127485721559}
   - component: {fileID: 1439771172}
+  - component: {fileID: -93331574664710060}
   m_Layer: 0
-  m_Name: CookedMeatIcon
+  m_Name: CookedMeat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -119,7 +120,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.13, y: 0.13}
+  m_Size: {x: 0.18, y: 0.14}
   m_EdgeRadius: 0
 --- !u!114 &1439771172
 MonoBehaviour:
@@ -131,5 +132,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6e9c2b374b8ad4f4097ffe5dc3755d27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-93331574664710060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6426492127485721555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ed80957dc8f546438f7c759357d6103, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

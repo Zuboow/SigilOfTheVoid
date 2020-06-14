@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6433636415192485549}
   - component: {fileID: 6432408810692598217}
   - component: {fileID: 4380439591966746123}
+  - component: {fileID: 3668181282051692577}
   m_Layer: 0
   m_Name: RawMeat
   m_TagString: Untagged
@@ -119,7 +120,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.13, y: 0.13}
+  m_Size: {x: 0.18, y: 0.14}
   m_EdgeRadius: 0
 --- !u!114 &4380439591966746123
 MonoBehaviour:
@@ -131,5 +132,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6e9c2b374b8ad4f4097ffe5dc3755d27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3668181282051692577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3367296582750455787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ed80957dc8f546438f7c759357d6103, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
