@@ -17,12 +17,12 @@ public class LayingItemDescription : MonoBehaviour
         {
             GameObject descriptionSpawner = new GameObject();
             descriptionSpawner.AddComponent<TextMesh>();
-            descriptionSpawner.GetComponent<TextMesh>().text = string.Format("(LMB) Grab");
+            descriptionSpawner.GetComponent<TextMesh>().text = string.Format(GetNameFromJSON());
             descriptionSpawner.GetComponent<TextMesh>().fontSize = 100;
             descriptionSpawner.GetComponent<TextMesh>().characterSize = 0.005f;
             descriptionSpawner.GetComponent<TextMesh>().alignment = TextAlignment.Center;
             descriptionSpawner.GetComponent<TextMesh>().anchor = TextAnchor.MiddleCenter;
-            descriptionText = Instantiate(descriptionSpawner, new Vector3(transform.position.x, transform.position.y, 10f), Quaternion.identity);
+            descriptionText = Instantiate(descriptionSpawner, new Vector3(transform.position.x, transform.position.y + 0.05f, 10f), Quaternion.identity);
             Destroy(descriptionSpawner);
             descriptionText.GetComponent<MeshRenderer>().sortingLayerName = "UI";
             descriptionText.GetComponent<MeshRenderer>().sortingOrder = 12;
@@ -53,5 +53,19 @@ public class LayingItemDescription : MonoBehaviour
             Destroy(descriptionText);
             descriptionText = null;
         }
+    }
+
+    string GetNameFromJSON()
+    {
+        TextAsset jsonData = referenceObject.GetComponent<InventoryManager>().itemsJsonFile;
+        Items values = JsonUtility.FromJson<Items>(jsonData.text);
+        foreach (Item i in values.items)
+        {
+            if (name == i.spriteName)
+            {
+                return i.name;
+            }
+        }
+        return name;
     }
 }
