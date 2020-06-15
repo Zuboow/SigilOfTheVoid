@@ -7,10 +7,12 @@ public class Hero_Movement : MonoBehaviour
     public Animator heroAnimator;
     public float playerSpeed;
     public static bool alive = true;
+    Rigidbody2D rigidbody2D;
 
     // Start is called before the first frame update
     void OnEnable()
     {
+        rigidbody2D = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -29,7 +31,7 @@ public class Hero_Movement : MonoBehaviour
 
         if (alive)
         {
-            transform.position = transform.position + (movement * playerSpeed);
+            rigidbody2D.MovePosition(transform.position + playerSpeed * movement * Time.deltaTime);
 
             heroAnimator.SetFloat("Horizontal", x);
             heroAnimator.SetFloat("Vertical", y);
