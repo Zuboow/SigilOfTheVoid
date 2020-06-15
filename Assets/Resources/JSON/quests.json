@@ -4,7 +4,7 @@
 			"name": "Bring me some apples",
 			"questIntroductionLine": "Hello, my dear boy. Could you bring me two apples? \nI need them for my apple pie.",
 			"questNotFinishedLine": "Take your time. I need good quality apples \nfor my apple pie.",
-			"questFinishedLine": "Great job, my dear boy. \nI think you deserve that pie.",
+			"questFinishedLine": "Great job, my dear boy. \nI think you deserve something for that.",
 			"questGiver": "Grandma",
 			"neededItems": ["Apple", "Apple"],
 			"rewards": ["CookedMeat"],

@@ -73,7 +73,11 @@ public class Quest_Manager : MonoBehaviour
         {
             if (q.name == questName) activeQuest = q;
         }
-        string[] neededItems = activeQuest.neededItems;
+        List<string> neededItems = new List<string>();
+        foreach(string c in activeQuest.neededItems)
+        {
+            neededItems.Add(c);
+        }
         for (int s = 0; s < activeQuest.neededItems.Length; s++)
         {
             for (int i = 0; i < inventoryItems.Count; i++)
