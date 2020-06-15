@@ -5,17 +5,18 @@ using UnityEngine;
 public class ItemGrabber : MonoBehaviour
 {
     GameObject referenceObject;
+    GameObject player;
 
-    // Start is called before the first frame update
     void OnEnable()
     {
         referenceObject = GameObject.FindGameObjectWithTag("MainCamera");
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
-    // Update is called once per frame
     void OnMouseOver()
     {
-        if (Input.GetMouseButtonDown(0) && referenceObject.GetComponent<DamageManager>().healthAmount > 0 && !ItemReplacer.itemDragged)
+        if (Input.GetMouseButtonDown(0) && referenceObject.GetComponent<DamageManager>().healthAmount > 0 
+            && !ItemReplacer.itemDragged && Vector2.Distance(player.transform.position, transform.position) < 0.55)
         {
             TextAsset jsonData = referenceObject.GetComponent<InventoryManager>().itemsJsonFile;
             Items values = JsonUtility.FromJson<Items>(jsonData.text);
@@ -23,10 +24,12 @@ public class ItemGrabber : MonoBehaviour
             {
                 if (name == i.spriteName)
                 {
-                    referenceObject.GetComponent<AudioPlayer>().PlaySound(4);
-                    referenceObject.GetComponent<InventoryManager>().AddItem(
-                        i.spriteName, this.GetComponent<SpriteRenderer>().sprite, i.name, i.description, i.value, 1, i.usableItem, i.healing, -1);
-                    Destroy(gameObject);
+                    if (referenceObject.GetComponent<InventoryManager>().AddItem(
+                        i.spriteName, this.GetComponent<SpriteRenderer>().sprite, i.name, i.description, i.value, 1, i.usableItem, i.healing, -1) == true)
+                    {
+                        referenceObject.GetComponent<AudioPlayer>().PlaySound(4);
+                        Destroy(gameObject);
+                    }
                     break;
                 }
             }

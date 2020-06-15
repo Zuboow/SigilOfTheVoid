@@ -19,7 +19,7 @@ public class SpriteLoader : MonoBehaviour
         }
     }
 
-    Sprite LoadSprite(string name)
+    public static Sprite LoadSprite(string name)
     {
         if (string.IsNullOrEmpty("Assets/Graphics/Sprites/Objects/" + name + "Icon.png")) return null;
         if (System.IO.File.Exists("Assets/Graphics/Sprites/Objects/" + name + "Icon.png"))

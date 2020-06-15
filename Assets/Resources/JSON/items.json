@@ -36,8 +36,8 @@
 			"description": "Basic building resource. Squirrels not included.",
 			"value": 14,
 			"quantity": 1,
-			"healing": 0,
-			"usableItem": false,
+			"healing": -99,
+			"usableItem": true,
 			"icon": null
 		}
 	]
