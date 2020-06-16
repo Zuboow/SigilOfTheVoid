@@ -39,6 +39,26 @@
 			"healing": -99,
 			"usableItem": true,
 			"icon": null
+		},
+		{
+			"spriteName": "Milk",
+			"name": "Milk Jug",
+			"description": "It is good for your bones and makes you strong.",
+			"value": 18,
+			"quantity": 1,
+			"healing": 8,
+			"usableItem": true,
+			"icon": null
+		},
+		{
+			"spriteName": "DeadMouse",
+			"name": "Dead Mouse",
+			"description": "Why do cats love playing with...that. Ew...",
+			"value": 2,
+			"quantity": 1,
+			"healing": -60,
+			"usableItem": true,
+			"icon": null
 		}
 	]
 }

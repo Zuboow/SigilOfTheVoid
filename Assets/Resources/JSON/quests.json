@@ -9,6 +9,16 @@
 			"neededItems": ["Apple", "Apple"],
 			"rewards": ["CookedMeat"],
 			"completion": false
+		},
+		{
+			"name": "Meow",
+			"questIntroductionLine": "Meow.",
+			"questNotFinishedLine": "...",
+			"questFinishedLine": "Meow!",
+			"questGiver": "Cat",
+			"neededItems": ["Milk"],
+			"rewards": ["DeadMouse"],
+			"completion": false
 		}
 	]
 }
