@@ -7,8 +7,18 @@
 			"questFinishedLine": "Great job, my dear boy. \nI think you deserve something for that.",
 			"questGiver": "Grandma",
 			"neededItems": ["Apple", "Apple"],
-			"rewards": ["CookedMeat"],
-			"completion": false
+			"rewards": ["Milk"],
+			"nextQuest": "Mouse problem"
+		},
+		{
+			"name": "Mouse problem",
+			"questIntroductionLine": "My boy, somewhere here hides a mouse.\nCould you please catch it and bring to me?",
+			"questNotFinishedLine": "I'm sure this mouse is somewhere here...",
+			"questFinishedLine": "Here is it! Great job, my boy.",
+			"questGiver": "Grandma",
+			"neededItems": ["DeadMouse"],
+			"rewards": ["RawMeat"],
+			"nextQuest": null
 		},
 		{
 			"name": "Meow",
@@ -18,7 +28,7 @@
 			"questGiver": "Cat",
 			"neededItems": ["Milk"],
 			"rewards": ["DeadMouse"],
-			"completion": false
+			"nextQuest": null
 		}
 	]
 }

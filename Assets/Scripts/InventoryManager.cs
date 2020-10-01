@@ -39,6 +39,42 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
+    public List<int> CheckIfItemsAvailable(List<Item> inventory, List<string> list)
+    {
+        List<Item> inventoryItems = new List<Item>();
+        List<int> indexes = new List<int>();
+        foreach (Item item in inventory)
+        {
+            inventoryItems.Add(item);
+        }
+        List<string> neededItems = new List<string>();
+        foreach (string i in list)
+        {
+            neededItems.Add(i);
+        }
+        for (int s = 0; s < list.Count; s++)
+        {
+            for (int i = 0; i < inventoryItems.Count; i++)
+            {
+                if (inventoryItems[i] != null && inventoryItems[i].spriteName == neededItems[s])
+                {
+                    indexes.Add(i);
+                    neededItems[s] = null;
+                    inventoryItems[i] = null;
+                    break;
+                }
+            }
+        }
+        foreach (string n in neededItems)
+        {
+            if (n != null)
+            {
+                return null;
+            }
+        }
+        return indexes;
+    }
+
     void OpenInventory()
     {
         GetComponent<AudioPlayer>().PlaySound(2);

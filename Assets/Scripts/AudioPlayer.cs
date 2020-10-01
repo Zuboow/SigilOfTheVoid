@@ -8,24 +8,7 @@ public class AudioPlayer : MonoBehaviour
 
     public void PlaySound(int type)
     {
-        switch (type)
-        {
-            case 1:
-                GetComponent<AudioSource>().clip = inventorySoundEffects[0];
-                GetComponent<AudioSource>().Play();
-                break;
-            case 2:
-                GetComponent<AudioSource>().clip = inventorySoundEffects[1];
-                GetComponent<AudioSource>().Play();
-                break;
-            case 3:
-                GetComponent<AudioSource>().clip = inventorySoundEffects[2];
-                GetComponent<AudioSource>().Play();
-                break;
-            case 4:
-                GetComponent<AudioSource>().clip = inventorySoundEffects[3];
-                GetComponent<AudioSource>().Play();
-                break;
-        }
+        GetComponent<AudioSource>().clip = inventorySoundEffects[type - 1];
+        GetComponent<AudioSource>().Play();
     }
 }

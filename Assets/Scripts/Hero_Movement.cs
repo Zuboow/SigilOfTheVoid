@@ -7,7 +7,7 @@ public class Hero_Movement : MonoBehaviour
     public Animator heroAnimator;
     public float playerSpeed;
     public static bool alive = true;
-    Rigidbody2D rigidbody2D;
+    new Rigidbody2D rigidbody2D;
 
     // Start is called before the first frame update
     void OnEnable()

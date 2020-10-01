@@ -43,7 +43,7 @@
 		{
 			"spriteName": "Milk",
 			"name": "Milk Jug",
-			"description": "It is good for your bones and makes you strong.",
+			"description": "Good for your bones and makes you strong.",
 			"value": 18,
 			"quantity": 1,
 			"healing": 8,
@@ -53,7 +53,7 @@
 		{
 			"spriteName": "DeadMouse",
 			"name": "Dead Mouse",
-			"description": "Why do cats love playing with...that. Ew...",
+			"description": "Cats love playing with...that. Ew...",
 			"value": 2,
 			"quantity": 1,
 			"healing": -60,

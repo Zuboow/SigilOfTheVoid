@@ -103,7 +103,14 @@ public class Quest_Manager : MonoBehaviour
         }
         if (canBeFinished) { 
             StartCoroutine(ShowLine(activeQuest.questFinishedLine)); 
-            questState = 2; 
+            if (activeQuest.nextQuest != null)
+            {
+                this.questName = activeQuest.nextQuest;
+                questState = 0;
+            } else
+            {
+                questState = 2;
+            }
             for (int y = 0; y < indexes.Count; y++)
             {
                 referenceObject.GetComponent<InventoryManager>().DeleteItem(indexes[y]);
