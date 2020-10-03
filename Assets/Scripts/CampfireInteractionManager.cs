@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class CampfireInteractionManager : MonoBehaviour
 {
+    public Animator campfireAnimator;
     GameObject referenceObject, player;
-    public Sprite emptyCampfire, filledCampfire;
     public int status = 1;
 
     void OnEnable()
@@ -16,18 +16,6 @@ public class CampfireInteractionManager : MonoBehaviour
 
     private void FixedUpdate()
     {
-        switch (status)
-        {
-            case 1:
-                GetComponent<SpriteRenderer>().sprite = emptyCampfire;
-                break;
-            case 2:
-                GetComponent<SpriteRenderer>().sprite = filledCampfire;
-                break;
-            case 3:
-                GetComponent<SpriteRenderer>().sprite = filledCampfire; //needs change
-                break;
-        }
     }
 
     void OnMouseOver()
@@ -42,6 +30,8 @@ public class CampfireInteractionManager : MonoBehaviour
                         RefillCampfire();
                         break;
                     case 2:
+                        status = 3;
+                        campfireAnimator.SetInteger("status", status);
                         break;
                     case 3:
                         CookMeat("RawMeat");
@@ -53,13 +43,10 @@ public class CampfireInteractionManager : MonoBehaviour
 
     void RefillCampfire()
     {
-        //if (InventoryManager.isOpen)
-        //{
-        //    referenceObject.GetComponent<InventoryManager>().CloseInventory();
-        //}
         if (ManageCampfireItems(new List<string>() { "WoodenLog" }))
         {
-            status = 3; // tests -> should be as '2'
+            status = 2; // tests -> should be as '2'
+            campfireAnimator.SetInteger("status", status);
             referenceObject.GetComponent<AudioPlayer>().PlaySound(5);
         }
     }

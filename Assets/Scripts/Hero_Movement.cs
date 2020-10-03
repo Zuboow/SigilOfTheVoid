@@ -18,6 +18,8 @@ public class Hero_Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        heroAnimator.SetBool("alive", alive);
+
         float x = Input.GetAxis("Horizontal");
         float y = Input.GetAxis("Vertical");
 

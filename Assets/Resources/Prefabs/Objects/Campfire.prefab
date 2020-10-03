@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 8228933550608745561}
   - component: {fileID: 8228933550608745558}
   - component: {fileID: 8228933550608745560}
+  - component: {fileID: 2131394586}
+  - component: {fileID: 800162838}
   m_Layer: 0
   m_Name: Campfire
   m_TagString: Untagged
@@ -94,7 +96,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.011373639, y: -0.002323864}
+  m_Offset: {x: 0.008195072, y: -0.00020486116}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -105,5 +107,38 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.1568228, y: 0.1037457}
+  m_Size: {x: 0.108085096, y: 0.074079156}
   m_EdgeRadius: 0
+--- !u!114 &2131394586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8228933550608745559}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ace045ce71ba16e4aa381874f4c27a32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  campfireAnimator: {fileID: 800162838}
+  status: 1
+--- !u!95 &800162838
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8228933550608745559}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: fe6332709006f1b42807e9abcaf0791e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
