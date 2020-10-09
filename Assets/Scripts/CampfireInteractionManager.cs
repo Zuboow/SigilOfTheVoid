@@ -50,13 +50,17 @@ public class CampfireInteractionManager : MonoBehaviour
             referenceObject.GetComponent<AudioPlayer>().PlaySound(5);
         }
     }
-
+    //temporary shitstorm
     void CookMeat(string type)
     {
         if (ManageCampfireItems(new List<string>() { "RawMeat" }))
         {
             Debug.Log("Cooking...");
             ReceiveCraftingItem("CookedMeat");
+        } else if (ManageCampfireItems(new List<string>() { "DeadMouse" }))
+        {
+            Debug.Log("Cooking...");
+            ReceiveCraftingItem("CookedMouse");
         }
     }
 

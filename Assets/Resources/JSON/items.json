@@ -59,6 +59,16 @@
 			"healing": -60,
 			"usableItem": true,
 			"icon": null
+		},
+		{
+			"spriteName": "CookedMouse",
+			"name": "Cooked Mouse",
+			"description": "Mmmmmm, tasty!",
+			"value": 3,
+			"quantity": 1,
+			"healing": 16,
+			"usableItem": true,
+			"icon": null
 		}
 	]
 }
