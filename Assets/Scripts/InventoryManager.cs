@@ -210,6 +210,10 @@ public class InventoryManager : MonoBehaviour
         itemsInInventory[index] = null;
         if (isOpen) ReloadInventory();
     }
+    public void DropItem(string name)
+    {
+        GameObject droppedItem = Instantiate(Resources.Load("Prefabs/Items/" + name) as GameObject, new Vector3(transform.position.x, transform.position.y - 0.16f, 10f), Quaternion.identity);
+        droppedItem.name = name;
+    }
 
-    
 }
