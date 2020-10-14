@@ -24,7 +24,8 @@ public class Hero_SpriteManager : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 heroAnimator.SetBool("attack", true);
-            } else
+            } 
+            else
             {
                 heroAnimator.SetBool("attack", false);
             }
@@ -38,14 +39,7 @@ public class Hero_SpriteManager : MonoBehaviour
                 heroAnimator.SetBool("Moving", false);
             }
 
-            heroAnimator.SetFloat("Horizontal", x);
-            heroAnimator.SetFloat("Vertical", y);
             CheckDirection(x,y);
-        }
-        else
-        {
-            heroAnimator.SetFloat("Horizontal", 0);
-            heroAnimator.SetFloat("Vertical", 0);
         }
     }
 
