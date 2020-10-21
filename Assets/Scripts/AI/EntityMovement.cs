@@ -6,10 +6,9 @@ public class EntityMovement : MonoBehaviour
 {
     Vector3 newPosition;
     bool reachedPosition = true, idle = false;
-    System.Random waitTime;
     void OnEnable()
     {
-        waitTime = new System.Random();
+        newPosition = transform.position;
     }
 
     void Update()
@@ -18,7 +17,7 @@ public class EntityMovement : MonoBehaviour
         {
             if (reachedPosition)
             {
-                newPosition = Random.insideUnitCircle * 0.5f;
+                newPosition = newPosition + (Random.insideUnitSphere * 0.5f);
                 reachedPosition = false;
             }
             if (transform.position != newPosition)
