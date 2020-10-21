@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class CollisionChecker : MonoBehaviour
 {
-    GameObject newObject;
-
     void OnEnable()
     {
 
