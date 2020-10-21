@@ -5,14 +5,12 @@ using UnityEngine;
 public class OnDestroyDropper : MonoBehaviour
 {
     public List<DroppableItem> randomizedItemsWithPercentage;
-    public List<string> defaultItems;
     public void DropAndDestroy(GameObject g)
     {
         List<string> droppedItems = new List<string>();
-        droppedItems.AddRange(defaultItems);
         for(int x = 0; x < randomizedItemsWithPercentage.Count; x++)
         {
-            int randomizedNumber = Random.Range(0, 100);
+            int randomizedNumber = Random.Range(1, 101);
             if (randomizedNumber >= (100 - randomizedItemsWithPercentage[x].percentageChance))
                 droppedItems.Add(randomizedItemsWithPercentage[x].name);
         }
