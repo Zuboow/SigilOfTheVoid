@@ -21,5 +21,9 @@ public class CollisionChecker : MonoBehaviour
         {
             collider.gameObject.GetComponent<EntityHealthManager>().ManageDamage(weaponDamage);
         }
+        if (collider.gameObject.GetComponent<EntityReactionManager>() != null)
+        {
+            collider.gameObject.GetComponent<EntityReactionManager>().ManageReaction(collider.gameObject.name);
+        }
     }
 }
