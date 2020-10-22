@@ -14,31 +14,21 @@ public class EntityReactionManager : MonoBehaviour
         
     }
 
-    public void ManageReaction(string name)
+    public void ManageReaction(string name, GameObject player)
     {
-        string reaction = ReadFromFile(name.Split(' ')[0]);
+        string reaction = ReadFromFile(name.Split(' ')[0].Trim());
         switch(reaction)
         {
             case "Run":
-                Run();
+                GetComponent<EntityMovement>().SetReaction(reaction, player);
                 break;
             case "Attack":
-                Attack();
+                GetComponent<EntityMovement>().SetReaction(reaction, player);
                 break;
             default:
                 Debug.Log("Undefined entity");
                 break;
         }
-    }
-
-    void Run()
-    {
-        Debug.Log("Uciekać");
-    }
-
-    void Attack()
-    {
-        Debug.Log("Zginiesz");
     }
 
     string ReadFromFile(string entityName)
@@ -47,7 +37,7 @@ public class EntityReactionManager : MonoBehaviour
         EntityInfos entityinfos = JsonUtility.FromJson<EntityInfos>(jsonData.text);
         foreach (EntityInfo i in entityinfos.entityInfos)
         {
-            if (name == i.name)
+            if (entityName == i.name)
             {
                 return i.reactionType;
             }

@@ -165,8 +165,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 070aefb27c0c81f46a4d22766410e441, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthPoints: 5
-  remainingHealthPoints: 5
+  healthPoints: 15
+  remainingHealthPoints: 15
 --- !u!50 &3202038315972085053
 Rigidbody2D:
   serializedVersion: 4

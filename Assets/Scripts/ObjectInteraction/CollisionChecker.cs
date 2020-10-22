@@ -23,7 +23,7 @@ public class CollisionChecker : MonoBehaviour
         }
         if (collider.gameObject.GetComponent<EntityReactionManager>() != null)
         {
-            collider.gameObject.GetComponent<EntityReactionManager>().ManageReaction(collider.gameObject.name);
+            collider.gameObject.GetComponent<EntityReactionManager>().ManageReaction(collider.gameObject.name, GameObject.FindGameObjectWithTag("Player"));
         }
     }
 }
