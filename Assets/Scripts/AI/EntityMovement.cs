@@ -35,8 +35,8 @@ public class EntityMovement : MonoBehaviour
     public void SetReaction(string newReaction, GameObject playerV)
     {
         reaction = newReaction;
-        player = playerV;
-        newPosition = transform.position;
+        if (player == null)
+            player = playerV;
     }
 
     IEnumerator Idle(int time)
@@ -52,15 +52,8 @@ public class EntityMovement : MonoBehaviour
     {
         if (Vector3.Distance(player.transform.position, transform.position) < 2f)
         {
-            if (Vector3.Distance(player.transform.position, transform.position) < 0.2f)
-            {
-                newPosition = transform.position + (Random.insideUnitSphere * 1f);
-            }
-            if (newPosition == transform.position)
-            {
-                newPosition = transform.position + (Random.insideUnitSphere * 1f);
-            }
-            transform.position = Vector3.MoveTowards(transform.position, newPosition, 0.8f * Time.deltaTime);
+            Vector2 newPosition = transform.position - player.transform.position;
+            transform.position += new Vector3(newPosition.normalized.x, newPosition.normalized.y, 0f) * 0.5f * Time.deltaTime;
         }
         else
         {
