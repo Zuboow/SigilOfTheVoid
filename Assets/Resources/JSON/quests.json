@@ -7,7 +7,7 @@
 			"questFinishedLine": "Great job, my dear boy. \nI think you deserve something for that.",
 			"questGiver": "Grandma",
 			"neededItems": ["Apple", "Apple"],
-			"rewards": ["Milk"],
+			"rewards": ["Milk", "Milk", "Milk"],
 			"nextQuest": "Mouse problem"
 		},
 		{
