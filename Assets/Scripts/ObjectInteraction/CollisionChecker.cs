@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class CollisionChecker : MonoBehaviour
 {
-    int weaponDamage = 3;
+    int minWeaponDamage = 3, maxWeaponDamage = 5;
+    GameObject camera;
     void OnEnable()
     {
-
+        camera = GameObject.FindGameObjectWithTag("MainCamera");
     }
 
     private void Update()
@@ -19,7 +20,9 @@ public class CollisionChecker : MonoBehaviour
     {
         if (collider.gameObject.GetComponent<EntityHealthManager>() != null)
         {
-            collider.gameObject.GetComponent<EntityHealthManager>().ManageDamage(weaponDamage);
+            collider.gameObject.GetComponent<EntityHealthManager>().ManageDamage(minWeaponDamage, maxWeaponDamage);
+            camera.GetComponent<Camera_Movement>().StartShaking();
+            camera.GetComponent<AudioPlayer>().PlaySound(8);
         }
         if (collider.gameObject.GetComponent<EntityReactionManager>() != null)
         {

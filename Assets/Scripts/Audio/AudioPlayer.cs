@@ -8,7 +8,6 @@ public class AudioPlayer : MonoBehaviour
 
     public void PlaySound(int type)
     {
-        GetComponent<AudioSource>().clip = inventorySoundEffects[type - 1];
-        GetComponent<AudioSource>().Play();
+        GetComponent<AudioSource>().PlayOneShot(inventorySoundEffects[type - 1]);
     }
 }

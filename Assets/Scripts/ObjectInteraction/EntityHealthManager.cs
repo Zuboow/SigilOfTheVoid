@@ -30,12 +30,14 @@ public class EntityHealthManager : MonoBehaviour
         }
     }
 
-    public void ManageDamage(int damage)
+    public void ManageDamage(int minDamage, int maxDamage)
     {
-        if (remainingHealthPoints - damage >= 1)
+        System.Random randomizer = new System.Random();
+        int randomDamage = randomizer.Next(minDamage, maxDamage);
+        if (remainingHealthPoints - randomDamage >= 1)
         {
             healthBar.SetActive(true);
-            DamageEntity(damage);
+            DamageEntity(randomDamage);
         } 
         else
         {

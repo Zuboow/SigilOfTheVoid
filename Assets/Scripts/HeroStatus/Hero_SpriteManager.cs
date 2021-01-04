@@ -6,10 +6,11 @@ public class Hero_SpriteManager : MonoBehaviour
 {
     public Animator heroAnimator;
     public static bool alive = true;
+    GameObject camera;
 
     void OnEnable()
     {
-
+        camera = GameObject.FindGameObjectWithTag("MainCamera");
     }
 
     void Update()
@@ -24,6 +25,7 @@ public class Hero_SpriteManager : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 heroAnimator.SetBool("attack", true);
+                //camera.GetComponent<AudioPlayer>().PlaySound(7);
             } 
             else
             {
