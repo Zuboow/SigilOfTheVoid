@@ -21,12 +21,14 @@ public class SpriteLoader : MonoBehaviour
 
     public static Sprite LoadSprite(string name)
     {
-        if (string.IsNullOrEmpty("Assets/Resources/Graphics/Sprites/Objects/" + name + "Icon.png")) return null;
-        if (System.IO.File.Exists("Assets/Resources/Graphics/Sprites/Objects/" + name + "Icon.png"))
+        //if (string.IsNullOrEmpty("Assets/Resources/Graphics/Sprites/Objects/" + name + "Icon.png")) return null;
+        //if (System.IO.File.Exists("Assets/Resources/Graphics/Sprites/Objects/" + name + "Icon.png"))
+        if (Resources.Load<Texture2D>("Graphics/Sprites/Objects/" + name + "Icon") != null)
         {
-            byte[] bytes = System.IO.File.ReadAllBytes("Assets/Resources/Graphics/Sprites/Objects/" + name + "Icon.png");
+            //byte[] bytes = System.IO.File.ReadAllBytes("Assets/Resources/Graphics/Sprites/Objects/" + name + "Icon.png");
             Texture2D texture = new Texture2D(1, 1);
-            texture.LoadImage(bytes);
+            //texture.LoadImage(bytes);
+            texture = Resources.Load<Texture2D>("Graphics/Sprites/Objects/" + name + "Icon");
             texture.filterMode = FilterMode.Point;
             Sprite sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f),256f);
             return sprite;
