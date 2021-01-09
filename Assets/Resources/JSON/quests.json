@@ -6,18 +6,28 @@
 			"questNotFinishedLine": "Take your time. I need good quality apples \nfor my apple pie.",
 			"questFinishedLine": "Great job, my dear boy. \nI think you deserve something for that.",
 			"questGiver": "Grandma",
-			"neededItems": ["Apple", "Apple"],
-			"rewards": ["Milk", "Milk", "Milk"],
+			"neededItems": [ "Apple", "Apple" ],
+			"rewards": [ "Milk" ],
 			"nextQuest": "Mouse problem"
 		},
 		{
 			"name": "Mouse problem",
-			"questIntroductionLine": "My boy, somewhere here hides a mouse.\nCould you please catch it and bring to me?",
+			"questIntroductionLine": "My boy, somewhere here hides a mouse.\nCould you please catch it and bring it to me?",
 			"questNotFinishedLine": "I'm sure this mouse is somewhere here...",
-			"questFinishedLine": "Here is it! Great job, my boy.",
+			"questFinishedLine": "Here it is! Great job, my boy.",
 			"questGiver": "Grandma",
-			"neededItems": ["DeadMouse"],
-			"rewards": ["RawMeat"],
+			"neededItems": [ "DeadMouse" ],
+			"rewards": [ "RawMeat" ],
+			"nextQuest": "Cooking with Grandma"
+		},
+		{
+			"name": "Cooking with Grandma",
+			"questIntroductionLine": "Boy, do you have that piece of meat I gave you?\nI'm a bit hungry. Could you cook it for \nyour beloved granny?",
+			"questNotFinishedLine": "Grab some logs and take them to campfire.\nThen you can cook anything.",
+			"questFinishedLine": "Yes, meat.... Thank you, my boy.",
+			"questGiver": "Grandma",
+			"neededItems": [ "CookedMeat" ],
+			"rewards": [],
 			"nextQuest": null
 		},
 		{
@@ -26,8 +36,18 @@
 			"questNotFinishedLine": "...",
 			"questFinishedLine": "Meow!",
 			"questGiver": "Cat",
-			"neededItems": ["Milk"],
-			"rewards": ["DeadMouse"],
+			"neededItems": [ "Milk" ],
+			"rewards": [ "DeadMouse" ],
+			"nextQuest": "Meow Meow"
+		},
+		{
+			"name": "Meow Meow",
+			"questIntroductionLine": "Meow........",
+			"questNotFinishedLine": "Purrr...",
+			"questFinishedLine": "MEOW!",
+			"questGiver": "Cat",
+			"neededItems": [ "RawMeat" ],
+			"rewards": [ "Apple" ],
 			"nextQuest": null
 		}
 	]
