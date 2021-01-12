@@ -38,7 +38,6 @@ public class WeaponColliderController : MonoBehaviour
                 weaponCollider.GetComponent<BoxCollider2D>().size = new Vector2(0.2889264f, 0.1543525f);
                 break;
         }
-        //Debug.Log("Collider has been modified.  ");
     }
 
     void DisableWeaponCollider()

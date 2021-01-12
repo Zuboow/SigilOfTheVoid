@@ -25,7 +25,6 @@ public class Hero_SpriteManager : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 heroAnimator.SetBool("attack", true);
-                //camera.GetComponent<AudioPlayer>().PlaySound(7);
             } 
             else
             {

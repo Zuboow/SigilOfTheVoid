@@ -8,7 +8,6 @@ public class InventorySlot : MonoBehaviour
     public GameObject referenceObject;
     GameObject hoveredItem, descriptionBackground;
 
-    // Start is called before the first frame update
     void OnEnable()
     {
         referenceObject = GameObject.FindGameObjectWithTag("MainCamera");
@@ -33,7 +32,6 @@ public class InventorySlot : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
     void OnMouseOver()
     {
         if (!ItemReplacer.itemDragged)
