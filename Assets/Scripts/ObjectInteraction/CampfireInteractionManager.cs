@@ -45,12 +45,12 @@ public class CampfireInteractionManager : MonoBehaviour
     {
         if (ManageCampfireItems(new List<string>() { "WoodenLog" }))
         {
-            status = 2; // tests -> should be as '2'
+            status = 2;
             campfireAnimator.SetInteger("status", status);
             referenceObject.GetComponent<AudioPlayer>().PlaySound(5);
         }
     }
-    //temporary shitstorm
+    //placeholder method
     void CookMeat(string type)
     {
         if (ManageCampfireItems(new List<string>() { "RawMeat" }))

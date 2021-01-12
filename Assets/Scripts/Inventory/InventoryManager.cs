@@ -17,7 +17,6 @@ public class InventoryManager : MonoBehaviour
     List<GameObject> itemSpritesFromInventory = new List<GameObject>();
     float slotOffset = 0f, rowOffset = 0f;
 
-    // Start is called before the first frame update
     void OnEnable()
     {
         for (int x = 0; x < inventorySize; x++)
@@ -26,7 +25,6 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.I) && !isOpen && GetComponent<DamageManager>().healthAmount > 0)

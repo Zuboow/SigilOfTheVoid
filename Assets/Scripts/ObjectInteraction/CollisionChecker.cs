@@ -13,7 +13,6 @@ public class CollisionChecker : MonoBehaviour
 
     private void Update()
     {
-        //weaponDamage = 5;
     }
 
     void OnTriggerEnter2D(Collider2D collider)

@@ -13,13 +13,11 @@ public class DamageManager : MonoBehaviour
     private List<GameObject> hearts = new List<GameObject>();
     public int healthAmount = 100, maxHealth = 100;
 
-    // Start is called before the first frame update
     void OnEnable()
     {
         RecalculateHearts();
     }
 
-    // Update is called once per frame
     void Update()
     {
 
