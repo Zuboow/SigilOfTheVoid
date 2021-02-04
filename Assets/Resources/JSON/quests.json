@@ -7,6 +7,8 @@
 			"questFinishedLine": "Great job, my dear boy. \nI think you deserve something for that.",
 			"questGiver": "Grandma",
 			"neededItems": [ "Apple", "Apple" ],
+			"neededEnemies": [],
+			"amountOfNeededEnemies": 0,
 			"rewards": [ "Milk" ],
 			"nextQuest": "Mouse problem"
 		},
@@ -17,6 +19,8 @@
 			"questFinishedLine": "Here it is! Great job, my boy.",
 			"questGiver": "Grandma",
 			"neededItems": [ "DeadMouse" ],
+			"neededEnemies": [],
+			"amountOfNeededEnemies": 0,
 			"rewards": [ "RawMeat" ],
 			"nextQuest": "Cooking with Grandma"
 		},
@@ -27,7 +31,21 @@
 			"questFinishedLine": "Yes, meat.... Thank you, my boy.",
 			"questGiver": "Grandma",
 			"neededItems": [ "CookedMeat" ],
+			"neededEnemies": [],
+			"amountOfNeededEnemies": 0,
 			"rewards": [],
+			"nextQuest": "Get rid of the Void"
+		},
+		{
+			"name": "Get rid of the Void",
+			"questIntroductionLine": "Boy, I saw some really bloodthirsty rabbits nearby.\nCould you get rid of them?",
+			"questNotFinishedLine": "Those rabbits don't belong here.\nThey look like they came out of the void...",
+			"questFinishedLine": "Is it done? You have my biggest gratitude, boy. Here, take this.",
+			"questGiver": "Grandma",
+			"neededItems": [],
+			"neededEnemies": ["VoidRabbit"],
+			"amountOfNeededEnemies": 3,
+			"rewards": ["CookedMeat"],
 			"nextQuest": null
 		},
 		{
@@ -37,6 +55,8 @@
 			"questFinishedLine": "Meow!",
 			"questGiver": "Cat",
 			"neededItems": [ "Milk" ],
+			"neededEnemies": [],
+			"amountOfNeededEnemies": 0,
 			"rewards": [ "DeadMouse" ],
 			"nextQuest": "Meow Meow"
 		},
@@ -47,6 +67,8 @@
 			"questFinishedLine": "MEOW!",
 			"questGiver": "Cat",
 			"neededItems": [ "RawMeat" ],
+			"neededEnemies": [],
+			"amountOfNeededEnemies": 0,
 			"rewards": [ "Apple" ],
 			"nextQuest": null
 		}

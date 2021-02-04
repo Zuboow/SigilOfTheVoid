@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5792962958579961169}
   - component: {fileID: 4743613330580278964}
   - component: {fileID: 3744167931791673600}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -192,6 +192,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1508753882269989010, guid: 80240786d2a5cc74bb354e0064b4b3cc,
         type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1508753882269989010, guid: 80240786d2a5cc74bb354e0064b4b3cc,
+        type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -299,6 +304,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1508753884264676427, guid: 80240786d2a5cc74bb354e0064b4b3cc,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1508753883848597262, guid: 80240786d2a5cc74bb354e0064b4b3cc,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1508753882560718573, guid: 80240786d2a5cc74bb354e0064b4b3cc,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 80240786d2a5cc74bb354e0064b4b3cc, type: 3}

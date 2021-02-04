@@ -5,7 +5,7 @@ using UnityEngine;
 public class InventoryManager : MonoBehaviour
 {
     public static bool isOpen = false;
-    int inventorySize = 4, slotsInRow = 1;
+    int inventorySize = 20, slotsInRow = 4;
     public GameObject inventorySlotPrefab;
     public Sprite descriptionBackgroundTexture;
     public TextAsset itemsJsonFile;
