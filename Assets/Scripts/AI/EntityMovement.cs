@@ -8,11 +8,13 @@ public class EntityMovement : MonoBehaviour
     bool reachedPosition = true, idle = false;
     string reaction;
     Rigidbody2D rigidBody;
-    GameObject player;
+    GameObject player, camera;
+    float attackTimer = 0f;
     void OnEnable()
     {
         newPosition = transform.position;
         rigidBody = GetComponent<Rigidbody2D>();
+        camera = GameObject.FindGameObjectWithTag("MainCamera");
     }
 
     void Update()
@@ -20,7 +22,7 @@ public class EntityMovement : MonoBehaviour
         switch (reaction)
         {
             default:
-                BehaveIdle();
+                //BehaveIdle();
                 break;
             case "Run":
                 Run();
@@ -65,15 +67,30 @@ public class EntityMovement : MonoBehaviour
 
     public void Attack()
     {
-        if (Vector3.Distance(player.transform.position, transform.position) > 0.2f)
+        if (Vector3.Distance(player.transform.position, transform.position) > 1f || camera.GetComponent<DamageManager>().healthAmount <= 0)
+        {
+            reaction = "Idle";
+        }
+        else if (Vector3.Distance(player.transform.position, transform.position) > 0.2f)
         {
             Vector3 reversedVector = (transform.position - player.transform.position) * -1;
-            transform.position = Vector3.MoveTowards(transform.position, player.transform.position + reversedVector, 0.6f * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, player.transform.position + reversedVector, 0.3f * Time.deltaTime);
             Debug.Log("Gonię gracza");
         }
         else
         {
             Debug.Log("Dziobię");
+            if (attackTimer <= 0f)
+            {
+                camera.GetComponent<DamageManager>().DamagePlayer(-4);
+                camera.GetComponent<Camera_Movement>().StartShaking();
+                attackTimer = 1f;
+            }
+            else
+            {
+                attackTimer -= Time.deltaTime;
+                if (attackTimer <= 0f) attackTimer = 0f;
+            }
         }
     }
 

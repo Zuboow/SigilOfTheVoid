@@ -8,6 +8,9 @@ public class DamageManager : MonoBehaviour
 {
     public Sprite fullHeart;
     public GameObject hero;
+    public List<GameObject> objectsToDisable;
+    public Sprite deathSprite;
+
     public List<AudioClip> hitEffects = new List<AudioClip>();
     float nextPositionOffset = 0f;
     private List<GameObject> hearts = new List<GameObject>();
@@ -30,20 +33,28 @@ public class DamageManager : MonoBehaviour
         if (healthAmount + damage > 0)
         {
             healthAmount += damage;
-            hero.GetComponent<AudioSource>().clip = hitEffects[rand.Next(0, hitEffects.Count - 1)];
-            hero.GetComponent<AudioSource>().Play();
+            hero.GetComponent<AudioSource>().PlayOneShot(hitEffects[rand.Next(0, hitEffects.Count - 1)]);
         }
         else
         {
             healthAmount = 0;
             Hero_Movement.alive = false;
             GetComponent<InventoryManager>().CloseInventory();
-            hero.GetComponent<AudioSource>().clip = hitEffects[hitEffects.Count - 1];
-            hero.GetComponent<AudioSource>().Play();
+            hero.GetComponent<AudioSource>().PlayOneShot(hitEffects[hitEffects.Count - 1]);
+            Die();
         }
         StartCoroutine(ShowHealthChange(damage));
         RecalculateHearts();
         
+    }
+
+    void Die()
+    {
+        foreach (GameObject gObject in objectsToDisable)
+        {
+            gObject.SetActive(false);
+        }
+        hero.GetComponent<SpriteRenderer>().sprite = deathSprite;
     }
 
     public void RecalculateHearts()
