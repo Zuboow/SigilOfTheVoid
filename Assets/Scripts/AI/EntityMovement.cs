@@ -9,7 +9,7 @@ public class EntityMovement : MonoBehaviour
     string reaction;
     Rigidbody2D rigidBody;
     GameObject player, camera;
-    float attackTimer = 0f;
+    float attackTimer = 1f;
     void OnEnable()
     {
         newPosition = transform.position;
@@ -75,14 +75,12 @@ public class EntityMovement : MonoBehaviour
         {
             Vector3 reversedVector = (transform.position - player.transform.position) * -1;
             transform.position = Vector3.MoveTowards(transform.position, player.transform.position + reversedVector, 0.3f * Time.deltaTime);
-            Debug.Log("Gonię gracza");
         }
         else
         {
-            Debug.Log("Dziobię");
             if (attackTimer <= 0f)
             {
-                camera.GetComponent<DamageManager>().DamagePlayer(-4);
+                camera.GetComponent<DamageManager>().DamagePlayer(Random.Range(-15,-4));
                 camera.GetComponent<Camera_Movement>().StartShaking();
                 attackTimer = 1f;
             }

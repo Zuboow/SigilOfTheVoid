@@ -61,8 +61,8 @@ public class Quest_Manager : MonoBehaviour
             {
                 if (questName == q.name)
                 {
-                    Debug.Log("Quest started");
                     heroQuests.Add(q);
+                    StopAllCoroutines();
                     StartCoroutine(ShowLine(q.questIntroductionLine));
                     questState = 1;
                 }
@@ -114,12 +114,14 @@ public class Quest_Manager : MonoBehaviour
             {
                 if (n != null)
                 {
+                    StopAllCoroutines();
                     StartCoroutine(ShowLine(activeQuest.questNotFinishedLine));
                     canBeFinished = false;
                     break;
                 }
             }
             if (canBeFinished) { 
+                StopAllCoroutines();
                 StartCoroutine(ShowLine(activeQuest.questFinishedLine)); 
                 if (activeQuest.nextQuest != null)
                 {
@@ -143,10 +145,12 @@ public class Quest_Manager : MonoBehaviour
         {
             if (!killedEnemies.ContainsKey(activeQuest.neededEnemies[0]) || killedEnemies[activeQuest.neededEnemies[0]] < activeQuest.amountOfNeededEnemies)
             {
+                StopAllCoroutines();
                 StartCoroutine(ShowLine(activeQuest.questNotFinishedLine));
             }
             else
             {
+                StopAllCoroutines();
                 StartCoroutine(ShowLine(activeQuest.questFinishedLine));
                 if (activeQuest.nextQuest != null)
                 {

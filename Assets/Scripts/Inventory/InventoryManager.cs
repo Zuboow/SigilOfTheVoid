@@ -163,13 +163,11 @@ public class InventoryManager : MonoBehaviour
             if (freeSlotID != -1)
             {
                 itemsInInventory[freeSlotID] = (new Item(spriteName, name, description, value, quantity, sprite, usableItem, healing));
-                Debug.Log("" + name + " added to inventory.");
                 if (isOpen) ReloadInventory();
                 return true;
             }
             else
             {
-                Debug.Log("Inventory full.");
                 return false;
             }
         } else
@@ -177,7 +175,6 @@ public class InventoryManager : MonoBehaviour
             if (itemsInInventory[slotNumber] == null)
             {
                 itemsInInventory[slotNumber] = (new Item(spriteName, name, description, value, quantity, sprite, usableItem, healing));
-                Debug.Log("" + name + " has changed its slot.");
                 if (isOpen) ReloadInventory();
                 Destroy(ItemReplacer.draggedItem);
                 ItemReplacer.itemDragged = false;
@@ -186,7 +183,6 @@ public class InventoryManager : MonoBehaviour
             {
                 itemsInInventory[ItemReplacer.originalSlot] = itemsInInventory[slotNumber];
                 itemsInInventory[slotNumber] = (new Item(spriteName, name, description, value, quantity, sprite, usableItem, healing));
-                Debug.Log("" + name + " has changed its slot.");
                 if (isOpen) ReloadInventory();
                 Destroy(ItemReplacer.draggedItem);
                 ItemReplacer.itemDragged = false;

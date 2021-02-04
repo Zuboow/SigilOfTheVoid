@@ -55,6 +55,7 @@ public class DamageManager : MonoBehaviour
             gObject.SetActive(false);
         }
         hero.GetComponent<SpriteRenderer>().sprite = deathSprite;
+        hero.GetComponent<SpriteRenderer>().sortingOrder = 5;
     }
 
     public void RecalculateHearts()

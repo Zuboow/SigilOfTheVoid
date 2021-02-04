@@ -109,7 +109,6 @@ public class InventorySlot : MonoBehaviour
         {
             if (InventoryManager.itemsInInventory[clickedSlotID - 1].usableItem)
             {
-                Debug.Log(InventoryManager.itemsInInventory[clickedSlotID - 1].name + " eaten.");
                 if (InventoryManager.itemsInInventory[clickedSlotID - 1].healing > 0)
                 {
                     referenceObject.GetComponent<DamageManager>().Heal(InventoryManager.itemsInInventory[clickedSlotID - 1].healing);
@@ -126,10 +125,6 @@ public class InventorySlot : MonoBehaviour
                 descriptionBackground = null;
             }
         }
-        else
-        {
-            Debug.Log("Empty slot.");
-        }
     }
 
     void DropItem()
@@ -142,10 +137,6 @@ public class InventorySlot : MonoBehaviour
             Destroy(descriptionBackground);
             hoveredItem = null;
             descriptionBackground = null;
-        }
-        else
-        {
-            Debug.Log("Empty slot.");
         }
     }
 
@@ -161,10 +152,6 @@ public class InventorySlot : MonoBehaviour
             Destroy(descriptionBackground);
             hoveredItem = null;
             descriptionBackground = null;
-        }
-        else
-        {
-            Debug.Log("Empty slot.");
         }
     }
 }

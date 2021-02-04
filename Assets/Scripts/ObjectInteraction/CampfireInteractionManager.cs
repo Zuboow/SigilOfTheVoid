@@ -16,6 +16,11 @@ public class CampfireInteractionManager : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (!GetComponent<AudioSource>().mute)
+        {
+            float distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
+            GetComponent<AudioSource>().spatialBlend = distanceToPlayer < 2 ? distanceToPlayer * 0.5f : 1;
+        }
     }
 
     void OnMouseOver()
@@ -31,6 +36,8 @@ public class CampfireInteractionManager : MonoBehaviour
                         break;
                     case 2:
                         status = 3;
+                        GetComponent<AudioSource>().mute = false;
+                        referenceObject.GetComponent<AudioPlayer>().PlaySound(9);
                         campfireAnimator.SetInteger("status", status);
                         break;
                     case 3:
