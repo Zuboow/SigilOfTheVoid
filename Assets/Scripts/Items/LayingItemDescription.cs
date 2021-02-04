@@ -61,11 +61,11 @@ public class LayingItemDescription : MonoBehaviour
         Items values = JsonUtility.FromJson<Items>(jsonData.text);
         foreach (Item i in values.items)
         {
-            if (name == i.spriteName)
+            if (name.Split('(')[0].Trim() == i.spriteName)
             {
                 return i.name;
             }
         }
-        return name;
+        return name.Split('(')[0].Trim();
     }
 }

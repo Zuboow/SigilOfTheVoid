@@ -1,8 +1,8 @@
 {
 	"entityInfos": [
 		{
-			"name": "Rabbit",
-			"reactionType": "Run"
+			"name": "VoidRabbit",
+			"reactionType": "Attack"
 		},
 		{
 			"name": "Wolf",

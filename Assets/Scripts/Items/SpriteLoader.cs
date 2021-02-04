@@ -19,10 +19,10 @@ public class SpriteLoader : MonoBehaviour
 
     public static Sprite LoadSprite(string name)
     {
-        if (Resources.Load<Texture2D>("Graphics/Sprites/Objects/" + name + "Icon") != null)
+        if (Resources.Load<Texture2D>("Graphics/Sprites/Objects/" + name.Split('(')[0].Trim() + "Icon") != null)
         {
             Texture2D texture = new Texture2D(1, 1);
-            texture = Resources.Load<Texture2D>("Graphics/Sprites/Objects/" + name + "Icon");
+            texture = Resources.Load<Texture2D>("Graphics/Sprites/Objects/" + name.Split('(')[0].Trim() + "Icon");
             texture.filterMode = FilterMode.Point;
             Sprite sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f),256f);
             return sprite;

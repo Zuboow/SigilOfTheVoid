@@ -22,7 +22,7 @@ public class ItemGrabber : MonoBehaviour
             Items values = JsonUtility.FromJson<Items>(jsonData.text);
             foreach (Item i in values.items)
             {
-                if (name == i.spriteName)
+                if (name.Split('(')[0].Trim() == i.spriteName)
                 {
                     if (referenceObject.GetComponent<InventoryManager>().AddItem(
                         i.spriteName, this.GetComponent<SpriteRenderer>().sprite, i.name, i.description, i.value, 1, i.usableItem, i.healing, -1) == true)

@@ -8,10 +8,15 @@ public class DamageManager : MonoBehaviour
 {
     public Sprite fullHeart;
     public GameObject hero;
+    public List<GameObject> objectsToDisable;
+    public Sprite deathSprite;
+    public GameObject deathScreen;
+
     public List<AudioClip> hitEffects = new List<AudioClip>();
-    float nextPositionOffset = 0f;
+    float nextPositionOffset = 0f, deathScreenTime = 5f;
     private List<GameObject> hearts = new List<GameObject>();
     public int healthAmount = 100, maxHealth = 100;
+    bool dead = false;
 
     void OnEnable()
     {
@@ -20,7 +25,11 @@ public class DamageManager : MonoBehaviour
 
     void Update()
     {
-
+        if (dead)
+        {
+            deathScreen.GetComponent<CanvasGroup>().alpha = deathScreenTime > 0f ? 1 - (deathScreenTime * 0.20f) : 1;
+            deathScreenTime -= Time.deltaTime;
+        }
     }
 
     public void DamagePlayer(int damage)
@@ -30,20 +39,30 @@ public class DamageManager : MonoBehaviour
         if (healthAmount + damage > 0)
         {
             healthAmount += damage;
-            hero.GetComponent<AudioSource>().clip = hitEffects[rand.Next(0, hitEffects.Count - 1)];
-            hero.GetComponent<AudioSource>().Play();
+            hero.GetComponent<AudioSource>().PlayOneShot(hitEffects[rand.Next(0, hitEffects.Count - 1)]);
         }
         else
         {
             healthAmount = 0;
             Hero_Movement.alive = false;
             GetComponent<InventoryManager>().CloseInventory();
-            hero.GetComponent<AudioSource>().clip = hitEffects[hitEffects.Count - 1];
-            hero.GetComponent<AudioSource>().Play();
+            hero.GetComponent<AudioSource>().PlayOneShot(hitEffects[hitEffects.Count - 1]);
+            Die();
         }
         StartCoroutine(ShowHealthChange(damage));
         RecalculateHearts();
         
+    }
+
+    void Die()
+    {
+        foreach (GameObject gObject in objectsToDisable)
+        {
+            gObject.SetActive(false);
+        }
+        hero.GetComponent<SpriteRenderer>().sprite = deathSprite;
+        hero.GetComponent<SpriteRenderer>().sortingOrder = 5;
+        dead = true;
     }
 
     public void RecalculateHearts()

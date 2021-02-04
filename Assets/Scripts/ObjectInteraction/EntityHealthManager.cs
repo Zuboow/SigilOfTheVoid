@@ -55,6 +55,7 @@ public class EntityHealthManager : MonoBehaviour
 
     void KillEntity()
     {
+        Quest_Manager.AddKilledEnemy(gameObject.name.Split('(')[0].Trim());
         GetComponent<OnDestroyDropper>().DropAndDestroy(gameObject);
     }
 }

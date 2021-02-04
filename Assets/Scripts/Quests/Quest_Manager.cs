@@ -8,6 +8,7 @@ public class Quest_Manager : MonoBehaviour
     public bool questAvailable;
     int questState;
     GameObject referenceObject, player, showedText;
+    static Dictionary<string, int> killedEnemies = new Dictionary<string, int>();
 
 
     Quests questsJson;
@@ -39,6 +40,19 @@ public class Quest_Manager : MonoBehaviour
         }
     }
 
+    public static void AddKilledEnemy(string enemyName)
+    {
+        if (!killedEnemies.ContainsKey(enemyName))
+        {
+            Debug.Log(enemyName + " added to killed enemies list.");
+            killedEnemies.Add(enemyName, 1);
+        } else
+        {
+            killedEnemies[enemyName] = killedEnemies[enemyName] + 1;
+            Debug.Log(enemyName + " killed: " + killedEnemies[enemyName]);
+        }
+    }
+
     void StartQuest(string questName)
     {
         if (questAvailable)
@@ -47,8 +61,8 @@ public class Quest_Manager : MonoBehaviour
             {
                 if (questName == q.name)
                 {
-                    Debug.Log("Quest started");
                     heroQuests.Add(q);
+                    StopAllCoroutines();
                     StartCoroutine(ShowLine(q.questIntroductionLine));
                     questState = 1;
                 }
@@ -73,53 +87,86 @@ public class Quest_Manager : MonoBehaviour
         {
             if (q.name == questName) activeQuest = q;
         }
-        List<string> neededItems = new List<string>();
-        foreach(string c in activeQuest.neededItems)
+
+        //
+        if (activeQuest.neededEnemies.Length == 0)
         {
-            neededItems.Add(c);
-        }
-        for (int s = 0; s < activeQuest.neededItems.Length; s++)
-        {
-            for (int i = 0; i < inventoryItems.Count; i++)
+            List<string> neededItems = new List<string>();
+            foreach(string c in activeQuest.neededItems)
             {
-                if (inventoryItems[i] != null && inventoryItems[i].spriteName == neededItems[s])
+                neededItems.Add(c);
+            }
+            for (int s = 0; s < activeQuest.neededItems.Length; s++)
+            {
+                for (int i = 0; i < inventoryItems.Count; i++)
                 {
-                    indexes.Add(i);
-                    neededItems[s] = null;
-                    inventoryItems[i] = null;
+                    if (inventoryItems[i] != null && inventoryItems[i].spriteName == neededItems[s])
+                    {
+                        indexes.Add(i);
+                        neededItems[s] = null;
+                        inventoryItems[i] = null;
+                        break;
+                    }
+                }
+            }
+            bool canBeFinished = true;
+            foreach (string n in neededItems)
+            {
+                if (n != null)
+                {
+                    StopAllCoroutines();
+                    StartCoroutine(ShowLine(activeQuest.questNotFinishedLine));
+                    canBeFinished = false;
                     break;
                 }
             }
-        }
-        bool canBeFinished = true;
-        foreach (string n in neededItems)
+            if (canBeFinished) { 
+                StopAllCoroutines();
+                StartCoroutine(ShowLine(activeQuest.questFinishedLine)); 
+                if (activeQuest.nextQuest != null)
+                {
+                    this.questName = activeQuest.nextQuest;
+                    questState = 0;
+                } else
+                {
+                    questState = 2;
+                }
+                for (int y = 0; y < indexes.Count; y++)
+                {
+                    referenceObject.GetComponent<InventoryManager>().DeleteItem(indexes[y]);
+                }
+                for (int z = 0; z < activeQuest.rewards.Length; z++)
+                {
+                    GetRewards(activeQuest.rewards[z]);
+                }
+                if (InventoryManager.isOpen) referenceObject.GetComponent<InventoryManager>().ReloadInventory();
+            }
+        } else
         {
-            if (n != null)
+            if (!killedEnemies.ContainsKey(activeQuest.neededEnemies[0]) || killedEnemies[activeQuest.neededEnemies[0]] < activeQuest.amountOfNeededEnemies)
             {
+                StopAllCoroutines();
                 StartCoroutine(ShowLine(activeQuest.questNotFinishedLine));
-                canBeFinished = false;
-                break;
             }
-        }
-        if (canBeFinished) { 
-            StartCoroutine(ShowLine(activeQuest.questFinishedLine)); 
-            if (activeQuest.nextQuest != null)
+            else
             {
-                this.questName = activeQuest.nextQuest;
-                questState = 0;
-            } else
-            {
-                questState = 2;
+                StopAllCoroutines();
+                StartCoroutine(ShowLine(activeQuest.questFinishedLine));
+                if (activeQuest.nextQuest != null)
+                {
+                    this.questName = activeQuest.nextQuest;
+                    questState = 0;
+                }
+                else
+                {
+                    questState = 2;
+                }
+                for (int z = 0; z < activeQuest.rewards.Length; z++)
+                {
+                    GetRewards(activeQuest.rewards[z]);
+                }
+                if (InventoryManager.isOpen) referenceObject.GetComponent<InventoryManager>().ReloadInventory();
             }
-            for (int y = 0; y < indexes.Count; y++)
-            {
-                referenceObject.GetComponent<InventoryManager>().DeleteItem(indexes[y]);
-            }
-            for (int z = 0; z < activeQuest.rewards.Length; z++)
-            {
-                GetRewards(activeQuest.rewards[z]);
-            }
-            if (InventoryManager.isOpen) referenceObject.GetComponent<InventoryManager>().ReloadInventory();
         }
     }
 

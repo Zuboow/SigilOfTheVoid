@@ -26,7 +26,6 @@ public class Camera_Movement : MonoBehaviour
         shakeDuration = 0.5f;
         shake = true;
         cameraPosition = transform.localPosition;
-        Debug.Log("Shake");
     }
     void Shake()
     {
