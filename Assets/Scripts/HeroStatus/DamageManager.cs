@@ -20,6 +20,7 @@ public class DamageManager : MonoBehaviour
 
     void OnEnable()
     {
+        Hero_Movement.alive = true;
         RecalculateHearts();
     }
 

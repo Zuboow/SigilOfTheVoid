@@ -5,7 +5,7 @@ using UnityEngine;
 public class Quest_Manager : MonoBehaviour
 {
     public string questName;
-    public bool questAvailable;
+    public bool questAvailable, noRequirementQuestStarted = false;
     int questState;
     GameObject referenceObject, player, showedText;
     static Dictionary<string, int> killedEnemies = new Dictionary<string, int>();
@@ -89,7 +89,37 @@ public class Quest_Manager : MonoBehaviour
         }
 
         //
-        if (activeQuest.neededEnemies.Length == 0)
+        if (activeQuest.noRequirement)
+        {
+            if (!noRequirementQuestStarted)
+            {
+                StopAllCoroutines();
+                StartCoroutine(ShowLine(activeQuest.questNotFinishedLine));
+                noRequirementQuestStarted = true;
+            } else
+            {
+                StopAllCoroutines();
+                StartCoroutine(ShowLine(activeQuest.questFinishedLine));
+                if (activeQuest.nextQuest != null)
+                {
+                    this.questName = activeQuest.nextQuest;
+                    questState = 0;
+                }
+                else
+                {
+                    questState = 2;
+                }
+                for (int z = 0; z < activeQuest.rewards.Length; z++)
+                {
+                    GetRewards(activeQuest.rewards[z]);
+                }
+                if (InventoryManager.isOpen) referenceObject.GetComponent<InventoryManager>().ReloadInventory();
+                noRequirementQuestStarted = false;
+                if (activeQuest.setAvailability != null)
+                    SetQuestAvailability(activeQuest.setAvailability);
+            }
+        }
+        else if (activeQuest.neededEnemies.Length == 0)
         {
             List<string> neededItems = new List<string>();
             foreach(string c in activeQuest.neededItems)
@@ -140,8 +170,11 @@ public class Quest_Manager : MonoBehaviour
                     GetRewards(activeQuest.rewards[z]);
                 }
                 if (InventoryManager.isOpen) referenceObject.GetComponent<InventoryManager>().ReloadInventory();
+                if (activeQuest.setAvailability != null)
+                    SetQuestAvailability(activeQuest.setAvailability);
             }
-        } else
+        } 
+        else
         {
             if (!killedEnemies.ContainsKey(activeQuest.neededEnemies[0]) || killedEnemies[activeQuest.neededEnemies[0]] < activeQuest.amountOfNeededEnemies)
             {
@@ -166,6 +199,8 @@ public class Quest_Manager : MonoBehaviour
                     GetRewards(activeQuest.rewards[z]);
                 }
                 if (InventoryManager.isOpen) referenceObject.GetComponent<InventoryManager>().ReloadInventory();
+                if (activeQuest.setAvailability != null)
+                    SetQuestAvailability(activeQuest.setAvailability);
             }
         }
     }
@@ -192,6 +227,19 @@ public class Quest_Manager : MonoBehaviour
         return null;
     }
 
+    void SetQuestAvailability(string questGiverName)
+    {
+        List<GameObject> questGivers = new List<GameObject>(GameObject.FindGameObjectsWithTag("QuestGiver"));
+        foreach (GameObject questGiver in questGivers)
+        {
+            if (questGiverName == questGiver.name)
+            {
+                questGiver.GetComponent<Quest_Manager>().questAvailable = true;
+            }
+        }
+
+    }
+
     IEnumerator ShowLine(string line)
     {
         if (showedText != null)
@@ -214,7 +262,7 @@ public class Quest_Manager : MonoBehaviour
         showedText.GetComponent<TextMesh>().font = pixelatedFont;
         showedText.GetComponent<MeshRenderer>().material = pixelatedFont.material;
 
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(8f);
         Destroy(showedText);
         showedText = null;
         StopAllCoroutines();

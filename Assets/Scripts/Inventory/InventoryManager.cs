@@ -19,10 +19,12 @@ public class InventoryManager : MonoBehaviour
 
     void OnEnable()
     {
+        itemsInInventory = new List<Item>();
         for (int x = 0; x < inventorySize; x++)
         {
             itemsInInventory.Add(null);
         }
+        CloseInventory();
     }
 
     void Update()
