@@ -15,6 +15,7 @@ public class EntityMovement : MonoBehaviour
         newPosition = transform.position;
         rigidBody = GetComponent<Rigidbody2D>();
         camera = GameObject.FindGameObjectWithTag("MainCamera");
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     void Update()
@@ -23,6 +24,7 @@ public class EntityMovement : MonoBehaviour
         {
             default:
                 //BehaveIdle();
+                Scan();
                 break;
             case "Run":
                 Run();
@@ -50,6 +52,14 @@ public class EntityMovement : MonoBehaviour
         StopAllCoroutines();
     }
 
+    public void Scan()
+    {
+        if (Vector3.Distance(player.transform.position, transform.position) < 1f)
+        {
+            reaction = "Attack";
+        }
+    }
+
     public void Run()
     {
         if (Vector3.Distance(player.transform.position, transform.position) < 2f)
@@ -74,7 +84,7 @@ public class EntityMovement : MonoBehaviour
         else if (Vector3.Distance(player.transform.position, transform.position) > 0.2f)
         {
             Vector3 reversedVector = (transform.position - player.transform.position) * -1;
-            transform.position = Vector3.MoveTowards(transform.position, player.transform.position + reversedVector, 0.3f * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, player.transform.position + reversedVector, 0.4f * Time.deltaTime);
         }
         else
         {

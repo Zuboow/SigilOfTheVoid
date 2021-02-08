@@ -69,6 +69,16 @@
 			"healing": 16,
 			"usableItem": true,
 			"icon": null
+		},
+		{
+			"spriteName": "GrannysStaff",
+			"name": "Granny's Staff",
+			"description": "Looks old...",
+			"value": 12,
+			"quantity": 1,
+			"healing": 0,
+			"usableItem": false,
+			"icon": null
 		}
 	]
 }

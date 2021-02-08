@@ -10,11 +10,13 @@
 			"neededEnemies": [],
 			"amountOfNeededEnemies": 0,
 			"rewards": [ "Milk" ],
-			"nextQuest": "Mouse problem"
+			"nextQuest": "Mouse problem",
+			"noRequirement": false,
+			"setAvailability": null
 		},
 		{
 			"name": "Mouse problem",
-			"questIntroductionLine": "My boy, somewhere here hides a mouse.\nCould you please catch it and bring it to me?",
+			"questIntroductionLine": "My boy, a mouse hides somewhere here.\nCould you please catch it and bring to me?",
 			"questNotFinishedLine": "I'm sure this mouse is somewhere here...",
 			"questFinishedLine": "Here it is! Great job, my boy.",
 			"questGiver": "Grandma",
@@ -22,7 +24,9 @@
 			"neededEnemies": [],
 			"amountOfNeededEnemies": 0,
 			"rewards": [ "RawMeat" ],
-			"nextQuest": "Cooking with Grandma"
+			"nextQuest": "Cooking with Grandma",
+			"noRequirement": false,
+			"setAvailability": null
 		},
 		{
 			"name": "Cooking with Grandma",
@@ -34,19 +38,51 @@
 			"neededEnemies": [],
 			"amountOfNeededEnemies": 0,
 			"rewards": [],
-			"nextQuest": "Get rid of the Void"
+			"nextQuest": "Where is my staff?",
+			"noRequirement": false,
+			"setAvailability": null
 		},
 		{
-			"name": "Get rid of the Void",
-			"questIntroductionLine": "Boy, I saw some really bloodthirsty rabbits nearby.\nCould you get rid of them?",
-			"questNotFinishedLine": "Those rabbits don't belong here.\nThey look like they came out of the void...",
-			"questFinishedLine": "Is it done? You have my biggest gratitude, boy. Here, take this.",
+			"name": "Where is my staff?",
+			"questIntroductionLine": "Boy, I lost my favourite staff.\nIt should be somewhere nearby. Could you find it?",
+			"questNotFinishedLine": "My lovely staff... Where are you?",
+			"questFinishedLine": "My staff... you have my biggest gratitude, my boy.\nWhat is that? A strange rabbit attacked you?\nI don't know if I should tell you about them...",
+			"questGiver": "Grandma",
+			"neededItems": [ "GrannysStaff" ],
+			"neededEnemies": [],
+			"amountOfNeededEnemies": 0,
+			"rewards": [],
+			"nextQuest": "The Void",
+			"noRequirement": false,
+			"setAvailability": null
+		},
+		{
+			"name": "The Void",
+			"questIntroductionLine": "Okay, dear boy... they came out of the Void.\nVery dark and mysterious place...",
+			"questNotFinishedLine": "If anything gets into the Void...\nit changes into bloodthirsty creature...",
+			"questFinishedLine": "You should talk with Diego... \nhe knows more about those creatures.",
 			"questGiver": "Grandma",
 			"neededItems": [],
-			"neededEnemies": ["VoidRabbit"],
-			"amountOfNeededEnemies": 3,
-			"rewards": ["CookedMeat"],
-			"nextQuest": null
+			"neededEnemies": [],
+			"amountOfNeededEnemies": 0,
+			"rewards": [],
+			"nextQuest": null,
+			"noRequirement": true,
+			"setAvailability": "Diego"
+		},
+		{
+			"name": "What is the Void?",
+			"questIntroductionLine": "Hey there. I'm Diego.\nGranny has sent you?",
+			"questNotFinishedLine": "You want to know more about the Void?\nWe can talk about it, sure.",
+			"questFinishedLine": "But if you want to do it right now, you have to go with me.\nI'm going to Dracania. I have some businesses to do there.",
+			"questGiver": "Diego",
+			"neededItems": [],
+			"neededEnemies": [],
+			"amountOfNeededEnemies": 0,
+			"rewards": [],
+			"nextQuest": null,
+			"noRequirement": true,
+			"setAvailability": null
 		},
 		{
 			"name": "Meow",
@@ -58,19 +94,9 @@
 			"neededEnemies": [],
 			"amountOfNeededEnemies": 0,
 			"rewards": [ "DeadMouse" ],
-			"nextQuest": "Meow Meow"
-		},
-		{
-			"name": "Meow Meow",
-			"questIntroductionLine": "Meow........",
-			"questNotFinishedLine": "Purrr...",
-			"questFinishedLine": "MEOW!",
-			"questGiver": "Cat",
-			"neededItems": [ "RawMeat" ],
-			"neededEnemies": [],
-			"amountOfNeededEnemies": 0,
-			"rewards": [ "Apple" ],
-			"nextQuest": null
+			"nextQuest": null,
+			"noRequirement": false,
+			"setAvailability": null
 		}
 	]
 }
