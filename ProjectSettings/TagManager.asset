@@ -8,6 +8,7 @@ TagManager:
   - MainSelector
   - DropdownRes
   - QuestGiver
+  - MainMenuSetting
   layers:
   - Default
   - TransparentFX
