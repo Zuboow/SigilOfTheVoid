@@ -23,8 +23,11 @@ public class VelocitiesManager : MonoBehaviour
         if (musicSlider != null) musicSlider.GetComponent<UnityEngine.UI.Slider>().value = musicVelocity;
         if (speechSlider != null) speechSlider.GetComponent<UnityEngine.UI.Slider>().value = speechVelocity;
         UpdateVelocites(true, true, true);
-        effectsTester.GetComponent<AudioSource>().mute = true;
-        speechTester.GetComponent<AudioSource>().mute = true;
+        if (effectsTester != null && speechTester != null)
+        {
+            effectsTester.GetComponent<AudioSource>().mute = true;
+            speechTester.GetComponent<AudioSource>().mute = true;
+        }
     }
 
     void Update()
