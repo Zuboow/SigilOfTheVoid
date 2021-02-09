@@ -2880,7 +2880,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 100
   m_WholeNumbers: 1
-  m_Value: 50
+  m_Value: 100
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -56265,6 +56265,9 @@ MonoBehaviour:
   - {fileID: 2127084678}
   - {fileID: 1060088253}
   - {fileID: 268257026}
+  resolution: 1920x1080
+  language: english
+  editedKey: 
 --- !u!114 &519420040
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -109899,7 +109902,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 100
   m_WholeNumbers: 1
-  m_Value: 50
+  m_Value: 100
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -111436,6 +111439,8 @@ MonoBehaviour:
   effectSources:
   - {fileID: 1425222920}
   - {fileID: 1823423206}
+  - {fileID: 557097508}
+  - {fileID: 519420028}
   musicSources:
   - {fileID: 1119911262}
   speechSources:
@@ -115812,7 +115817,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 100
   m_WholeNumbers: 1
-  m_Value: 50
+  m_Value: 100
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:

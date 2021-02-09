@@ -115,6 +115,9 @@ public class DamageManager : MonoBehaviour
         healthChangeTextSpawner.GetComponent<TextMesh>().text = (healthChange < 0 ? "" : "+") + healthChange;
         healthChangeTextSpawner.GetComponent<TextMesh>().fontSize = 80;
         healthChangeTextSpawner.GetComponent<TextMesh>().characterSize = 0.015f;
+        Font pixelatedFont = Resources.Load("Fonts/alphbeta") as Font;
+        healthChangeTextSpawner.GetComponent<TextMesh>().font = pixelatedFont;
+        healthChangeTextSpawner.GetComponent<MeshRenderer>().material = pixelatedFont.material;
         healthChangeTextSpawner.GetComponent<TextMesh>().alignment = TextAlignment.Center;
         healthChangeTextSpawner.GetComponent<TextMesh>().anchor = TextAnchor.MiddleCenter;
         GameObject healthChangeText = Instantiate(healthChangeTextSpawner, new Vector3(transform.localPosition.x, transform.localPosition.y, 10f), Quaternion.identity);

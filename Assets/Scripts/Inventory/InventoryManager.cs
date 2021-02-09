@@ -29,11 +29,11 @@ public class InventoryManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.I) && !isOpen && GetComponent<DamageManager>().healthAmount > 0 && !menuContainer.activeInHierarchy)
+        if (Input.GetKeyDown(SettingsManager.keySetup["eq"]) && !isOpen && GetComponent<DamageManager>().healthAmount > 0 && !menuContainer.activeInHierarchy)
         {
             OpenInventory();
         }
-        else if (Input.GetKeyDown(KeyCode.I) && isOpen)
+        else if (Input.GetKeyDown(SettingsManager.keySetup["eq"]) && isOpen)
         {
             CloseInventory();
         }

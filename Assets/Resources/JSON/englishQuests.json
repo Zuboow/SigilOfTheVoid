@@ -31,7 +31,7 @@
 		{
 			"name": "Cooking with Grandma",
 			"questIntroductionLine": "Boy, do you have that piece of meat I gave you?\nI'm a bit hungry. Could you cook it for \nyour beloved granny?",
-			"questNotFinishedLine": "Grab some logs and take them to campfire.\nThen you can cook anything.",
+			"questNotFinishedLine": "Grab some logs and place them into campfire.\nYou'll also need to start a fire.",
 			"questFinishedLine": "Yes, meat.... Thank you, my boy.",
 			"questGiver": "Grandma",
 			"neededItems": [ "CookedMeat" ],

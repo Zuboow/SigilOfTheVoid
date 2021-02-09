@@ -11,7 +11,7 @@ public class Quest_Manager : MonoBehaviour
     static Dictionary<string, int> killedEnemies = new Dictionary<string, int>();
 
 
-    Quests questsJson;
+    static Quests questsJson;
     List<Quest> heroQuests = new List<Quest>();
 
     private void OnEnable()
@@ -19,8 +19,7 @@ public class Quest_Manager : MonoBehaviour
         referenceObject = GameObject.FindGameObjectWithTag("MainCamera");
         player = GameObject.FindGameObjectWithTag("Player");
 
-        TextAsset jsonData = Resources.Load("JSON/quests") as TextAsset;
-        questsJson = JsonUtility.FromJson<Quests>(jsonData.text);
+        LoadQuests(SettingsManager.language);
     }
 
     private void OnMouseOver()
@@ -238,6 +237,12 @@ public class Quest_Manager : MonoBehaviour
             }
         }
 
+    }
+
+    public static void LoadQuests(string lang)
+    {
+        TextAsset jsonData = Resources.Load("JSON/" + lang + "Quests") as TextAsset;
+        questsJson = JsonUtility.FromJson<Quests>(jsonData.text);
     }
 
     IEnumerator ShowLine(string line)

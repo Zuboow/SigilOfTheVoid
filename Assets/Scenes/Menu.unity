@@ -1999,7 +1999,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 100
   m_WholeNumbers: 1
-  m_Value: 50
+  m_Value: 100
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -3734,6 +3734,9 @@ MonoBehaviour:
   - {fileID: 1884032902}
   - {fileID: 664858698}
   - {fileID: 1181438975}
+  resolution: 1920x1080
+  language: english
+  editedKey: 
 --- !u!114 &464410777
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4107,7 +4110,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 100
   m_WholeNumbers: 1
-  m_Value: 50
+  m_Value: 100
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -10925,7 +10928,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 100
   m_WholeNumbers: 1
-  m_Value: 50
+  m_Value: 100
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
