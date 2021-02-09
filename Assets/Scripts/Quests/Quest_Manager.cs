@@ -12,7 +12,7 @@ public class Quest_Manager : MonoBehaviour
 
 
     static Quests questsJson;
-    List<Quest> heroQuests = new List<Quest>();
+    static List<Quest> heroQuests = new List<Quest>();
 
     private void OnEnable()
     {
@@ -45,7 +45,8 @@ public class Quest_Manager : MonoBehaviour
         {
             Debug.Log(enemyName + " added to killed enemies list.");
             killedEnemies.Add(enemyName, 1);
-        } else
+        }
+        else
         {
             killedEnemies[enemyName] = killedEnemies[enemyName] + 1;
             Debug.Log(enemyName + " killed: " + killedEnemies[enemyName]);
@@ -95,7 +96,8 @@ public class Quest_Manager : MonoBehaviour
                 StopAllCoroutines();
                 StartCoroutine(ShowLine(activeQuest.questNotFinishedLine));
                 noRequirementQuestStarted = true;
-            } else
+            }
+            else
             {
                 StopAllCoroutines();
                 StartCoroutine(ShowLine(activeQuest.questFinishedLine));
@@ -121,7 +123,7 @@ public class Quest_Manager : MonoBehaviour
         else if (activeQuest.neededEnemies.Length == 0)
         {
             List<string> neededItems = new List<string>();
-            foreach(string c in activeQuest.neededItems)
+            foreach (string c in activeQuest.neededItems)
             {
                 neededItems.Add(c);
             }
@@ -149,14 +151,16 @@ public class Quest_Manager : MonoBehaviour
                     break;
                 }
             }
-            if (canBeFinished) { 
+            if (canBeFinished)
+            {
                 StopAllCoroutines();
-                StartCoroutine(ShowLine(activeQuest.questFinishedLine)); 
+                StartCoroutine(ShowLine(activeQuest.questFinishedLine));
                 if (activeQuest.nextQuest != null)
                 {
                     this.questName = activeQuest.nextQuest;
                     questState = 0;
-                } else
+                }
+                else
                 {
                     questState = 2;
                 }
@@ -172,7 +176,7 @@ public class Quest_Manager : MonoBehaviour
                 if (activeQuest.setAvailability != null)
                     SetQuestAvailability(activeQuest.setAvailability);
             }
-        } 
+        }
         else
         {
             if (!killedEnemies.ContainsKey(activeQuest.neededEnemies[0]) || killedEnemies[activeQuest.neededEnemies[0]] < activeQuest.amountOfNeededEnemies)
@@ -243,6 +247,20 @@ public class Quest_Manager : MonoBehaviour
     {
         TextAsset jsonData = Resources.Load("JSON/" + lang + "Quests") as TextAsset;
         questsJson = JsonUtility.FromJson<Quests>(jsonData.text);
+
+        foreach (Quest q in heroQuests)
+        {
+            Quests values = JsonUtility.FromJson<Quests>(jsonData.text);
+            foreach (Quest i in values.quests)
+            {
+                if (i.name == q.name)
+                {
+                    q.questFinishedLine = i.questFinishedLine;
+                    q.questIntroductionLine = i.questIntroductionLine;
+                    q.questNotFinishedLine = i.questNotFinishedLine;
+                }
+            }
+        }
     }
 
     IEnumerator ShowLine(string line)

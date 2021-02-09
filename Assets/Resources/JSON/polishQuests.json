@@ -59,7 +59,7 @@
 		{
 			"name": "The Void",
 			"questIntroductionLine": "Dobrze, moj drogi... przyszly z Pustki.\nTo mroczne i tajemnicze miejsce...",
-			"questNotFinishedLine": "Jezeli cokolwiek wejdzie w Pustkê...\nzmienia sie w krwiozercza kreature...",
+			"questNotFinishedLine": "Jezeli cokolwiek wejdzie w Pustke...\nzmienia sie w krwiozercza kreature...",
 			"questFinishedLine": "Powinienes porozmawiac z Diego... \nwie znacznie wiecej o tych stworzeniach.",
 			"questGiver": "Grandma",
 			"neededItems": [],
