@@ -11,16 +11,15 @@ public class Quest_Manager : MonoBehaviour
     static Dictionary<string, int> killedEnemies = new Dictionary<string, int>();
 
 
-    Quests questsJson;
-    List<Quest> heroQuests = new List<Quest>();
+    static Quests questsJson;
+    static List<Quest> heroQuests = new List<Quest>();
 
     private void OnEnable()
     {
         referenceObject = GameObject.FindGameObjectWithTag("MainCamera");
         player = GameObject.FindGameObjectWithTag("Player");
 
-        TextAsset jsonData = Resources.Load("JSON/quests") as TextAsset;
-        questsJson = JsonUtility.FromJson<Quests>(jsonData.text);
+        LoadQuests(SettingsManager.language);
     }
 
     private void OnMouseOver()
@@ -46,7 +45,8 @@ public class Quest_Manager : MonoBehaviour
         {
             Debug.Log(enemyName + " added to killed enemies list.");
             killedEnemies.Add(enemyName, 1);
-        } else
+        }
+        else
         {
             killedEnemies[enemyName] = killedEnemies[enemyName] + 1;
             Debug.Log(enemyName + " killed: " + killedEnemies[enemyName]);
@@ -96,7 +96,8 @@ public class Quest_Manager : MonoBehaviour
                 StopAllCoroutines();
                 StartCoroutine(ShowLine(activeQuest.questNotFinishedLine));
                 noRequirementQuestStarted = true;
-            } else
+            }
+            else
             {
                 StopAllCoroutines();
                 StartCoroutine(ShowLine(activeQuest.questFinishedLine));
@@ -122,7 +123,7 @@ public class Quest_Manager : MonoBehaviour
         else if (activeQuest.neededEnemies.Length == 0)
         {
             List<string> neededItems = new List<string>();
-            foreach(string c in activeQuest.neededItems)
+            foreach (string c in activeQuest.neededItems)
             {
                 neededItems.Add(c);
             }
@@ -150,14 +151,16 @@ public class Quest_Manager : MonoBehaviour
                     break;
                 }
             }
-            if (canBeFinished) { 
+            if (canBeFinished)
+            {
                 StopAllCoroutines();
-                StartCoroutine(ShowLine(activeQuest.questFinishedLine)); 
+                StartCoroutine(ShowLine(activeQuest.questFinishedLine));
                 if (activeQuest.nextQuest != null)
                 {
                     this.questName = activeQuest.nextQuest;
                     questState = 0;
-                } else
+                }
+                else
                 {
                     questState = 2;
                 }
@@ -173,7 +176,7 @@ public class Quest_Manager : MonoBehaviour
                 if (activeQuest.setAvailability != null)
                     SetQuestAvailability(activeQuest.setAvailability);
             }
-        } 
+        }
         else
         {
             if (!killedEnemies.ContainsKey(activeQuest.neededEnemies[0]) || killedEnemies[activeQuest.neededEnemies[0]] < activeQuest.amountOfNeededEnemies)
@@ -207,7 +210,7 @@ public class Quest_Manager : MonoBehaviour
 
     Item GetRewards(string itemName)
     {
-        TextAsset jsonData = referenceObject.GetComponent<InventoryManager>().itemsJsonFile;
+        TextAsset jsonData = InventoryManager.itemsJsonFile;
         Items values = JsonUtility.FromJson<Items>(jsonData.text);
         foreach (Item i in values.items)
         {
@@ -238,6 +241,26 @@ public class Quest_Manager : MonoBehaviour
             }
         }
 
+    }
+
+    public static void LoadQuests(string lang)
+    {
+        TextAsset jsonData = Resources.Load("JSON/" + lang + "Quests") as TextAsset;
+        questsJson = JsonUtility.FromJson<Quests>(jsonData.text);
+
+        foreach (Quest q in heroQuests)
+        {
+            Quests values = JsonUtility.FromJson<Quests>(jsonData.text);
+            foreach (Quest i in values.quests)
+            {
+                if (i.name == q.name)
+                {
+                    q.questFinishedLine = i.questFinishedLine;
+                    q.questIntroductionLine = i.questIntroductionLine;
+                    q.questNotFinishedLine = i.questNotFinishedLine;
+                }
+            }
+        }
     }
 
     IEnumerator ShowLine(string line)

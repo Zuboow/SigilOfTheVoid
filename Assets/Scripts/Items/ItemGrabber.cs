@@ -18,7 +18,7 @@ public class ItemGrabber : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && referenceObject.GetComponent<DamageManager>().healthAmount > 0 
             && !ItemReplacer.itemDragged && Vector2.Distance(player.transform.position, transform.position) < 0.55)
         {
-            TextAsset jsonData = referenceObject.GetComponent<InventoryManager>().itemsJsonFile;
+            TextAsset jsonData = InventoryManager.itemsJsonFile;
             Items values = JsonUtility.FromJson<Items>(jsonData.text);
             foreach (Item i in values.items)
             {

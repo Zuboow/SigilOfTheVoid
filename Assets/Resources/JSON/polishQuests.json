@@ -1,0 +1,102 @@
+{
+	"quests": [
+		{
+			"name": "Bring me some apples",
+			"questIntroductionLine": "Witaj, moj drogi chlopcze. Moglbys przyniesc mi dwa jablka? \nPotrzebuje je do mojej szarlotki.",
+			"questNotFinishedLine": "Nie spiesz sie. Potrzebuje jablek naprawde dobrej jakosci.",
+			"questFinishedLine": "Swietna robota, moj drogi. \nChyba cos Ci sie za to nalezy.",
+			"questGiver": "Grandma",
+			"neededItems": [ "Apple", "Apple" ],
+			"neededEnemies": [],
+			"amountOfNeededEnemies": 0,
+			"rewards": [ "Milk" ],
+			"nextQuest": "Mouse problem",
+			"noRequirement": false,
+			"setAvailability": null
+		},
+		{
+			"name": "Mouse problem",
+			"questIntroductionLine": "Chlopcze, gdzies tu kryje sie mysz.\nMoglbys ja zlapac i przyniesc do mnie?",
+			"questNotFinishedLine": "Jestem pewna, ze ta mysz gdzies tu jest...",
+			"questFinishedLine": "Jest! Dobra robota, chlopcze.",
+			"questGiver": "Grandma",
+			"neededItems": [ "DeadMouse" ],
+			"neededEnemies": [],
+			"amountOfNeededEnemies": 0,
+			"rewards": [ "RawMeat" ],
+			"nextQuest": "Cooking with Grandma",
+			"noRequirement": false,
+			"setAvailability": null
+		},
+		{
+			"name": "Cooking with Grandma",
+			"questIntroductionLine": "Chlopcze, masz nadal kawalek miesa, ktory Ci dalam?\nJestem troche glodna. Moglbys go upiec\ndla swojej kochanej babci?",
+			"questNotFinishedLine": "Wez troche klod i poloz je w ognisku.\nBedziesz musial rozpalic ogien.",
+			"questFinishedLine": "Mieso.... Dziekuje, chlopcze.",
+			"questGiver": "Grandma",
+			"neededItems": [ "CookedMeat" ],
+			"neededEnemies": [],
+			"amountOfNeededEnemies": 0,
+			"rewards": [],
+			"nextQuest": "Where is my staff?",
+			"noRequirement": false,
+			"setAvailability": null
+		},
+		{
+			"name": "Where is my staff?",
+			"questIntroductionLine": "Chlopcze, zgubilam moja ulubiona laske.\nPowinna gdzies tu byc. Moglbys ja znalezc?",
+			"questNotFinishedLine": "Moja kochana lasko... gdzie jestes?",
+			"questFinishedLine": "Moja laska... masz moje najserdeczniejsze podziekowania, chlopcze.\nSlucham? Dziwaczny krolik Cie zaatakowal?\nNie wiem, czy powinnam powiedziec Ci o nich cos wiecej...",
+			"questGiver": "Grandma",
+			"neededItems": [ "GrannysStaff" ],
+			"neededEnemies": [],
+			"amountOfNeededEnemies": 0,
+			"rewards": [],
+			"nextQuest": "The Void",
+			"noRequirement": false,
+			"setAvailability": null
+		},
+		{
+			"name": "The Void",
+			"questIntroductionLine": "Dobrze, moj drogi... przyszly z Pustki.\nTo mroczne i tajemnicze miejsce...",
+			"questNotFinishedLine": "Jezeli cokolwiek wejdzie w Pustke...\nzmienia sie w krwiozercza kreature...",
+			"questFinishedLine": "Powinienes porozmawiac z Diego... \nwie znacznie wiecej o tych stworzeniach.",
+			"questGiver": "Grandma",
+			"neededItems": [],
+			"neededEnemies": [],
+			"amountOfNeededEnemies": 0,
+			"rewards": [],
+			"nextQuest": null,
+			"noRequirement": true,
+			"setAvailability": "Diego"
+		},
+		{
+			"name": "What is the Void?",
+			"questIntroductionLine": "Witaj. Nazywam sie Diego.\nBabcia Cie przyslala?",
+			"questNotFinishedLine": "Chcesz wiedziec wiecej na temat pustki, co?\nPewnie, mozemy o tym pogadac.",
+			"questFinishedLine": "Ale jezeli chcesz to zrobic juz teraz, bedziesz musial poplynac ze mna.\nWyruszam do Dracanii. Mam tam kilka interesow do zalatwienia.",
+			"questGiver": "Diego",
+			"neededItems": [],
+			"neededEnemies": [],
+			"amountOfNeededEnemies": 0,
+			"rewards": [],
+			"nextQuest": null,
+			"noRequirement": true,
+			"setAvailability": null
+		},
+		{
+			"name": "Meow",
+			"questIntroductionLine": "Miauu.",
+			"questNotFinishedLine": "...",
+			"questFinishedLine": "Miauu!",
+			"questGiver": "Cat",
+			"neededItems": [ "Milk" ],
+			"neededEnemies": [],
+			"amountOfNeededEnemies": 0,
+			"rewards": [ "DeadMouse" ],
+			"nextQuest": null,
+			"noRequirement": false,
+			"setAvailability": null
+		}
+	]
+}

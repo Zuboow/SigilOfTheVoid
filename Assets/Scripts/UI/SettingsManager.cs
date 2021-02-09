@@ -13,15 +13,19 @@ public class SettingsManager : MonoBehaviour
     public List<GameObject> mainMenuSettingObjects;
     bool fullscreen = true, yAxisInverted = false;
     float brightness = 0, contrast = 0, sensitivity = 50;
-    string resolution = "1920x1080", language = "english", editedKey = null;
+    string resolution = "1920x1080", editedKey = null;
+    public static string language = "english";
     //keys
-    public Dictionary<string, KeyCode> keySetup = new Dictionary<string, KeyCode>();
+    public static Dictionary<string, KeyCode> keySetup = new Dictionary<string, KeyCode>();
     Settings settings;
 
     void OnEnable()
     {
-        keySetup.Add("attack", KeyCode.Space);
-        keySetup.Add("eq", KeyCode.I);
+        if (!keySetup.ContainsKey("attack") && !keySetup.ContainsKey("eq"))
+        {
+            keySetup.Add("attack", KeyCode.Space);
+            keySetup.Add("eq", KeyCode.I);
+        }
 
         if (File.Exists(Application.dataPath + "/Resources/config.txt"))
         {
@@ -29,17 +33,23 @@ public class SettingsManager : MonoBehaviour
             StreamReader tr = new StreamReader(Application.dataPath + "/Resources/config.txt", true);
             String[] settings = tr.ReadLine().Trim().Split('%');
             tr.Close();
+            brightness = float.Parse(settings[0]) * 2f;
+            contrast = float.Parse(settings[1]) * 2f;
+            resolution = settings[2];
+            fullscreen = settings[3] == "1" ? true : false;
+            sensitivity = float.Parse(settings[4]);
+            yAxisInverted = settings[5] == "1" ? true : false;
+            language = settings[6];
             GameObject.FindGameObjectWithTag("MainCamera").GetComponent<SimpleLUT>().Brightness = float.Parse(settings[0]);
             GameObject.FindGameObjectWithTag("MainCamera").GetComponent<SimpleLUT>().Contrast = float.Parse(settings[1]);
-            brightnessSlider.GetComponent<UnityEngine.UI.Slider>().value = float.Parse(settings[0]) * 2f;
-            contrastSlider.GetComponent<UnityEngine.UI.Slider>().value = float.Parse(settings[1]) * 2f;
-            sensitivitySlider.GetComponent<UnityEngine.UI.Slider>().value = float.Parse(settings[4]);
-            fullscreenCheckbox.GetComponent<UnityEngine.UI.Toggle>().isOn = settings[3] == "1" ? true : false;
-            yAxisInvertedCheckbox.GetComponent<UnityEngine.UI.Toggle>().isOn = settings[5] == "1" ? true : false;
+            brightnessSlider.GetComponent<UnityEngine.UI.Slider>().value = brightness;
+            contrastSlider.GetComponent<UnityEngine.UI.Slider>().value = contrast;
+            sensitivitySlider.GetComponent<UnityEngine.UI.Slider>().value = sensitivity;
+            fullscreenCheckbox.GetComponent<UnityEngine.UI.Toggle>().isOn = fullscreen;
+            yAxisInvertedCheckbox.GetComponent<UnityEngine.UI.Toggle>().isOn = yAxisInverted;
 
-            resolution = settings[2];
-            string[] selectedOption = settings[2].Split('x');
-            Screen.SetResolution(Int32.Parse(selectedOption[0]), Int32.Parse(selectedOption[1]), (settings[3] == "1" ? true : false));
+            string[] selectedOption = resolution.Split('x');
+            Screen.SetResolution(Int32.Parse(selectedOption[0]), Int32.Parse(selectedOption[1]), fullscreen);
             foreach (KeyCode vKey in Enum.GetValues(typeof(KeyCode)))
             {
                 if (vKey.ToString() == settings[7])
@@ -54,7 +64,7 @@ public class SettingsManager : MonoBehaviour
                 }
             }
 
-            switch (settings[6])
+            switch (language)
             {
                 case "english":
                     englishLangOption.GetComponent<Text>().color = new Color32(108, 108, 108, 255);
@@ -69,8 +79,9 @@ public class SettingsManager : MonoBehaviour
             Settings s = JsonUtility.FromJson<Settings>(jsonData.text);
             foreach (GameObject mmSetting in mainMenuSettingObjects)
             {
-                mmSetting.GetComponent<Text>().text = s.languages[settings[6] == "polish" ? 1 : 0][mmSetting.name];
+                mmSetting.GetComponent<Text>().text = s.languages[language == "polish" ? 1 : 0][mmSetting.name];
             }
+            InventoryManager.ChangeTranslation();
         }
         screenBlocker.SetActive(false);
     }
@@ -162,7 +173,8 @@ public class SettingsManager : MonoBehaviour
         {
             mmSetting.GetComponent<Text>().text = s.languages[lang == "polish" ? 1 : 0][mmSetting.name];
         }
-        
+        Quest_Manager.LoadQuests(lang);
+        InventoryManager.ChangeTranslation();
         SaveConfigFile();
     }
 

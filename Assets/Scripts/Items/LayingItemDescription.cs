@@ -57,7 +57,7 @@ public class LayingItemDescription : MonoBehaviour
 
     string GetNameFromJSON()
     {
-        TextAsset jsonData = referenceObject.GetComponent<InventoryManager>().itemsJsonFile;
+        TextAsset jsonData = InventoryManager.itemsJsonFile;
         Items values = JsonUtility.FromJson<Items>(jsonData.text);
         foreach (Item i in values.items)
         {

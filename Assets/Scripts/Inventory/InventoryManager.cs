@@ -6,9 +6,9 @@ public class InventoryManager : MonoBehaviour
 {
     public static bool isOpen = false;
     int inventorySize = 20, slotsInRow = 4;
-    public GameObject inventorySlotPrefab;
+    public GameObject inventorySlotPrefab, menuContainer;
     public Sprite descriptionBackgroundTexture;
-    public TextAsset itemsJsonFile;
+    public static TextAsset itemsJsonFile;
     public Font pixelatedFont;
 
     public static List<Item> itemsInInventory = new List<Item>();
@@ -25,17 +25,39 @@ public class InventoryManager : MonoBehaviour
             itemsInInventory.Add(null);
         }
         CloseInventory();
+        ChangeTranslation();
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.I) && !isOpen && GetComponent<DamageManager>().healthAmount > 0)
+        if (Input.GetKeyDown(SettingsManager.keySetup["eq"]) && !isOpen && GetComponent<DamageManager>().healthAmount > 0 && !menuContainer.activeInHierarchy)
         {
             OpenInventory();
         }
-        else if (Input.GetKeyDown(KeyCode.I) && isOpen)
+        else if (Input.GetKeyDown(SettingsManager.keySetup["eq"]) && isOpen)
         {
             CloseInventory();
+        }
+    }
+
+    public static void ChangeTranslation()
+    {
+        TextAsset jsonData = Resources.Load("JSON/items_" + SettingsManager.language) as TextAsset;
+        itemsJsonFile = jsonData;
+        foreach (Item item in itemsInInventory)
+        {
+            if (item != null)
+            {
+                Items values = JsonUtility.FromJson<Items>(jsonData.text);
+                foreach (Item i in values.items)
+                {
+                    if (i.spriteName == item.spriteName)
+                    {
+                        item.description = i.description;
+                        item.name = i.name;
+                    }
+                }
+            }
         }
     }
 
