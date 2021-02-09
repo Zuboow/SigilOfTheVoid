@@ -91,7 +91,7 @@ public class CampfireInteractionManager : MonoBehaviour
 
     string ReceiveCraftingItem(string itemName)
     {
-        TextAsset jsonData = referenceObject.GetComponent<InventoryManager>().itemsJsonFile;
+        TextAsset jsonData = InventoryManager.itemsJsonFile;
         Items values = JsonUtility.FromJson<Items>(jsonData.text);
         foreach (Item i in values.items)
         {

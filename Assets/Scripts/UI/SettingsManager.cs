@@ -81,6 +81,7 @@ public class SettingsManager : MonoBehaviour
             {
                 mmSetting.GetComponent<Text>().text = s.languages[language == "polish" ? 1 : 0][mmSetting.name];
             }
+            InventoryManager.ChangeTranslation();
         }
         screenBlocker.SetActive(false);
     }
@@ -173,6 +174,7 @@ public class SettingsManager : MonoBehaviour
             mmSetting.GetComponent<Text>().text = s.languages[lang == "polish" ? 1 : 0][mmSetting.name];
         }
         Quest_Manager.LoadQuests(lang);
+        InventoryManager.ChangeTranslation();
         SaveConfigFile();
     }
 

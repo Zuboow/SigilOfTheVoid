@@ -16,7 +16,7 @@
 		},
 		{
 			"name": "Mouse problem",
-			"questIntroductionLine": "Chlopcze, gdzies tu kryje sie mysz.\nMóglbys ja zlapac i przyniesc do mnie?",
+			"questIntroductionLine": "Chlopcze, gdzies tu kryje sie mysz.\nMoglbys ja zlapac i przyniesc do mnie?",
 			"questNotFinishedLine": "Jestem pewna, ze ta mysz gdzies tu jest...",
 			"questFinishedLine": "Jest! Dobra robota, chlopcze.",
 			"questGiver": "Grandma",
@@ -74,7 +74,7 @@
 			"name": "What is the Void?",
 			"questIntroductionLine": "Witaj. Nazywam sie Diego.\nBabcia Cie przyslala?",
 			"questNotFinishedLine": "Chcesz wiedziec wiecej na temat pustki, co?\nPewnie, mozemy o tym pogadac.",
-			"questFinishedLine": "Ale jezeli chcesz to zrobic juz teraz, bedziesz musial poplynac ze mna.\nWyruszam do Dracanii. Mam tam kilka interesow do ogarniecia.",
+			"questFinishedLine": "Ale jezeli chcesz to zrobic juz teraz, bedziesz musial poplynac ze mna.\nWyruszam do Dracanii. Mam tam kilka interesow do zalatwienia.",
 			"questGiver": "Diego",
 			"neededItems": [],
 			"neededEnemies": [],

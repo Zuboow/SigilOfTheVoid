@@ -75,7 +75,8 @@ public class InventorySlot : MonoBehaviour
         {
             GameObject descriptionSpawner = new GameObject();
             descriptionSpawner.AddComponent<TextMesh>();
-            descriptionSpawner.GetComponent<TextMesh>().text = string.Format("<b>{0}</b> \n{1} \nValue: {2}G" + (usable == true ? "\n\n<color='green'>(E)</color> Use" : ""), itemName, description, value);
+            descriptionSpawner.GetComponent<TextMesh>().text = string.Format("<b>{0}</b> \n{1} \n" + (SettingsManager.language == "polish" ? "Wartosc" : "Value") + ": {2}G" + (usable == true ?
+                "\n\n<color='green'>(E)</color> " + (SettingsManager.language == "polish" ? "Uzyj" : "Use") : ""), itemName, description, value);
             descriptionSpawner.GetComponent<TextMesh>().fontSize = 85;
             descriptionSpawner.GetComponent<TextMesh>().characterSize = 0.005f;
             descriptionSpawner.GetComponent<TextMesh>().alignment = TextAlignment.Left;
