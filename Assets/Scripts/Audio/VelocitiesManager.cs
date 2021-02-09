@@ -12,6 +12,10 @@ public class VelocitiesManager : MonoBehaviour
 
     void OnEnable()
     {
+        if (!File.Exists(Application.dataPath + "/Resources/velocityConfig.txt"))
+        {
+            UpdateVelocites(true, true, true);
+        }
         File.ReadAllText(Application.dataPath + "/Resources/velocityConfig.txt");
         StreamReader tr = new StreamReader(Application.dataPath + "/Resources/velocityConfig.txt", true);
         String[] velocities =  tr.ReadLine().Trim().Split('-');
