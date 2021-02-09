@@ -6,7 +6,7 @@ public class InventoryManager : MonoBehaviour
 {
     public static bool isOpen = false;
     int inventorySize = 20, slotsInRow = 4;
-    public GameObject inventorySlotPrefab;
+    public GameObject inventorySlotPrefab, menuContainer;
     public Sprite descriptionBackgroundTexture;
     public TextAsset itemsJsonFile;
     public Font pixelatedFont;
@@ -29,7 +29,7 @@ public class InventoryManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.I) && !isOpen && GetComponent<DamageManager>().healthAmount > 0)
+        if (Input.GetKeyDown(KeyCode.I) && !isOpen && GetComponent<DamageManager>().healthAmount > 0 && !menuContainer.activeInHierarchy)
         {
             OpenInventory();
         }

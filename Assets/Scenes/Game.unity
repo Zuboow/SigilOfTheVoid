@@ -56036,6 +56036,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inventorySlotPrefab: {fileID: 2320254335753012525, guid: 173975c461db2e34e8faa03847642095,
     type: 3}
+  menuContainer: {fileID: 1141852767}
   descriptionBackgroundTexture: {fileID: 21300000, guid: b870b27e3d418d64cbc4ad92805e2931,
     type: 3}
   itemsJsonFile: {fileID: 4900000, guid: 028a31940f929364c9016ef6bc24d5b8, type: 3}

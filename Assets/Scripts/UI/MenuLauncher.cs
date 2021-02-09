@@ -22,6 +22,7 @@ public class MenuLauncher : MonoBehaviour
                     break;
                 case false:
                     menuContainer.SetActive(true);
+                    GameObject.FindGameObjectWithTag("MainCamera").GetComponent<InventoryManager>().CloseInventory();
                     break;
             }
         }
