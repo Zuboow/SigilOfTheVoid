@@ -4,13 +4,11 @@ using UnityEngine;
 
 public class OptionSelector : MonoBehaviour
 {
-    GameObject optionsSelector, mainSelector;
+    public GameObject optionsSelector, mainSelector;
     void OnEnable()
     {
-        optionsSelector = GameObject.FindGameObjectWithTag("OptionsSelector");
         if (name == "BackButton")
         {
-            mainSelector = GameObject.FindGameObjectWithTag("MainSelector");
             mainSelector.SetActive(false);
         }
     }

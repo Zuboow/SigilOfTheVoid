@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class MenuLauncher : MonoBehaviour
 {
+    public GameObject menuContainer;
     void Start()
     {
         
@@ -14,7 +15,15 @@ public class MenuLauncher : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            SceneManager.LoadScene("Menu");
+            switch (menuContainer.activeInHierarchy)
+            {
+                case true:
+                    menuContainer.SetActive(false);
+                    break;
+                case false:
+                    menuContainer.SetActive(true);
+                    break;
+            }
         }
     }
 }

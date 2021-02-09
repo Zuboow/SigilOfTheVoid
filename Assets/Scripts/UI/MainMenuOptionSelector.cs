@@ -5,14 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuOptionSelector : MonoBehaviour
 {
-    GameObject optionsSelector, mainSelector;
+    public GameObject optionsSelector, mainSelector;
 
     void OnEnable()
     {
-        mainSelector = GameObject.FindGameObjectWithTag("MainSelector");
-        if (name == "Settings")
+        if (name == "settings")
         {
-            optionsSelector = GameObject.FindGameObjectWithTag("OptionsSelector");
             optionsSelector.SetActive(false);
         }
     }
@@ -27,13 +25,13 @@ public class MainMenuOptionSelector : MonoBehaviour
         {
             switch (name)
             {
-                case "NewGame":
+                case "newGame":
                     SceneManager.LoadScene("Game");
                     break;
-                case "Settings":
+                case "settings":
                     optionsSelector.SetActive(true);
                     break;
-                case "Exit":
+                case "exit":
                     Application.Quit();
                     break;
             }

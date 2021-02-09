@@ -306,6 +306,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c27f9beb6facbd4881e043e54f31836, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  optionsSelector: {fileID: 418767998}
+  mainSelector: {fileID: 351063989}
 --- !u!61 &52802839
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1062,6 +1064,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c27f9beb6facbd4881e043e54f31836, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  optionsSelector: {fileID: 418767998}
+  mainSelector: {fileID: 351063989}
 --- !u!61 &138337884
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1692,6 +1696,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c27f9beb6facbd4881e043e54f31836, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  optionsSelector: {fileID: 418767998}
+  mainSelector: {fileID: 351063989}
 --- !u!61 &259889012
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2254,7 +2260,7 @@ GameObject:
   - component: {fileID: 348562868}
   - component: {fileID: 348562867}
   m_Layer: 0
-  m_Name: Settings
+  m_Name: settings
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2312,6 +2318,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dd80fd644754c74b993f5800eb3e441, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  optionsSelector: {fileID: 418767998}
+  mainSelector: {fileID: 351063989}
 --- !u!1 &351063989
 GameObject:
   m_ObjectHideFlags: 0
@@ -2795,6 +2803,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c27f9beb6facbd4881e043e54f31836, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  optionsSelector: {fileID: 418767998}
+  mainSelector: {fileID: 351063989}
 --- !u!61 &401759391
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5702,6 +5712,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c27f9beb6facbd4881e043e54f31836, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  optionsSelector: {fileID: 418767998}
+  mainSelector: {fileID: 351063989}
 --- !u!61 &832239284
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5715,7 +5727,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.32999527, y: -0.03466034}
+  m_Offset: {x: 1.0369952, y: -0.03466034}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -5726,7 +5738,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.98072386, y: 0.37404633}
+  m_Size: {x: 2.3947234, y: 0.37404633}
   m_EdgeRadius: 0
 --- !u!1 &891193622
 GameObject:
@@ -6156,7 +6168,7 @@ GameObject:
   - component: {fileID: 923884824}
   - component: {fileID: 923884823}
   m_Layer: 0
-  m_Name: Exit
+  m_Name: exit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6214,6 +6226,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dd80fd644754c74b993f5800eb3e441, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  optionsSelector: {fileID: 418767998}
+  mainSelector: {fileID: 351063989}
 --- !u!1 &924957158
 GameObject:
   m_ObjectHideFlags: 0
@@ -6857,6 +6871,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c27f9beb6facbd4881e043e54f31836, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  optionsSelector: {fileID: 418767998}
+  mainSelector: {fileID: 351063989}
 --- !u!61 &991024777
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6870,7 +6886,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.32999527, y: -0.03466034}
+  m_Offset: {x: 0.9000851, y: -0.03466034}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -6881,7 +6897,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.98072386, y: 0.37404633}
+  m_Size: {x: 2.1209035, y: 0.37404633}
   m_EdgeRadius: 0
 --- !u!1 &1023783437
 GameObject:
@@ -8135,6 +8151,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c27f9beb6facbd4881e043e54f31836, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  optionsSelector: {fileID: 418767998}
+  mainSelector: {fileID: 351063989}
 --- !u!61 &1219548585
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8695,6 +8713,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c27f9beb6facbd4881e043e54f31836, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  optionsSelector: {fileID: 418767998}
+  mainSelector: {fileID: 351063989}
 --- !u!61 &1270679343
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -13595,7 +13615,7 @@ GameObject:
   - component: {fileID: 2031480299}
   - component: {fileID: 2031480298}
   m_Layer: 0
-  m_Name: NewGame
+  m_Name: newGame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13653,6 +13673,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dd80fd644754c74b993f5800eb3e441, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  optionsSelector: {fileID: 418767998}
+  mainSelector: {fileID: 351063989}
 --- !u!1 &2037649285
 GameObject:
   m_ObjectHideFlags: 0
@@ -13897,6 +13919,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c27f9beb6facbd4881e043e54f31836, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  optionsSelector: {fileID: 418767998}
+  mainSelector: {fileID: 351063989}
 --- !u!61 &2069228844
 BoxCollider2D:
   m_ObjectHideFlags: 0
