@@ -43,13 +43,11 @@ public class Quest_Manager : MonoBehaviour
     {
         if (!killedEnemies.ContainsKey(enemyName))
         {
-            Debug.Log(enemyName + " added to killed enemies list.");
             killedEnemies.Add(enemyName, 1);
         }
         else
         {
             killedEnemies[enemyName] = killedEnemies[enemyName] + 1;
-            Debug.Log(enemyName + " killed: " + killedEnemies[enemyName]);
         }
     }
 

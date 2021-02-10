@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 public class Setting
 {
     public string newGame, load, settings, exit, english, polish, contrast, brightness, resolution, fullscreen, soundS, controls, language,
-        back, videoS, effects, music, speech, mouseS, controlsS, sensitivity, invertY, defaultKeys, attackS, equipmentS, pressAnyKey;
+        back, videoS, effects, music, speech, mouseS, controlsS, sensitivity, invertY, defaultKeys, attackS, equipmentS, pressAnyKey, save;
 
     public string this[string index]
     {
@@ -68,6 +68,8 @@ public class Setting
                     return equipmentS;
                 case "pressAnyKey":
                     return pressAnyKey;
+                case "save":
+                    return save;
             }
             return "Undefined";
         }

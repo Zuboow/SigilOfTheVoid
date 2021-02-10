@@ -14,6 +14,20 @@ public class CampfireInteractionManager : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
     }
 
+    public void ManageStatus()
+    {
+        switch (status)
+        {
+            case 2:
+                campfireAnimator.SetInteger("status", status);
+                break;
+            case 3:
+                GetComponent<AudioSource>().mute = false;
+                campfireAnimator.SetInteger("status", status);
+                break;
+        }
+    }
+
     private void FixedUpdate()
     {
         if (!GetComponent<AudioSource>().mute)

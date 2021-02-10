@@ -12,6 +12,7 @@ public class InventoryManager : MonoBehaviour
     public Font pixelatedFont;
 
     public static List<Item> itemsInInventory = new List<Item>();
+    public static List<Item> loadedItemsInInventory = new List<Item>();
 
     List<GameObject> inventorySlots = new List<GameObject>();
     List<GameObject> itemSpritesFromInventory = new List<GameObject>();
@@ -23,6 +24,10 @@ public class InventoryManager : MonoBehaviour
         for (int x = 0; x < inventorySize; x++)
         {
             itemsInInventory.Add(null);
+        }
+        if (loadedItemsInInventory.Count > 0)
+        {
+            itemsInInventory = loadedItemsInInventory;
         }
         CloseInventory();
         ChangeTranslation();
