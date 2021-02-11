@@ -132,7 +132,9 @@ public class GameSaver : MonoBehaviour
             loadButton.GetComponent<Text>().color = new Color32(255, 255, 255, 255);
         }
 
-        InventoryManager.loadedItemsInInventory = InventoryManager.itemsInInventory;
+        List<Item> items = new List<Item>();
+        items.AddRange(InventoryManager.itemsInInventory);
+        InventoryManager.loadedItemsInInventory = items;
     }
 
     public void LoadGameObjectTransform()
