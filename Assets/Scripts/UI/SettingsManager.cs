@@ -9,7 +9,8 @@ using UnityEngine.UI;
 public class SettingsManager : MonoBehaviour
 {
     GameObject resolutionDropdown;
-    public GameObject brightnessSlider, contrastSlider, fullscreenCheckbox, sensitivitySlider, yAxisInvertedCheckbox, polishLangOption, englishLangOption, screenBlocker, attackKeyChanger, eqKeyChanger;
+    public GameObject brightnessSlider, contrastSlider, fullscreenCheckbox, sensitivitySlider, yAxisInvertedCheckbox, polishLangOption, englishLangOption, screenBlocker, attackKeyChanger, eqKeyChanger,
+        menuContainer;
     public List<GameObject> mainMenuSettingObjects;
     bool fullscreen = true, yAxisInverted = false;
     float brightness = 0, contrast = 0, sensitivity = 50;
@@ -21,7 +22,9 @@ public class SettingsManager : MonoBehaviour
 
     void OnEnable()
     {
-        if (!keySetup.ContainsKey("attack") && !keySetup.ContainsKey("eq"))
+        if (menuContainer != null)
+            menuContainer.SetActive(true);
+        if (keySetup.Count == 0)
         {
             keySetup.Add("attack", KeyCode.Space);
             keySetup.Add("eq", KeyCode.I);
@@ -84,6 +87,8 @@ public class SettingsManager : MonoBehaviour
             InventoryManager.ChangeTranslation();
         }
         screenBlocker.SetActive(false);
+        if (menuContainer != null)
+            menuContainer.SetActive(false);
     }
 
     void FixedUpdate()

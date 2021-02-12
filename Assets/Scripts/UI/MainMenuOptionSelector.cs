@@ -41,7 +41,7 @@ public class MainMenuOptionSelector : MonoBehaviour
             switch (name)
             {
                 case "newGame":
-                    GameSaver.gameObjectTransforms = new Dictionary<string, Vector3>();
+                    GameSaver.load = false;
                     SceneManager.LoadScene("Game");
                     break;
                 case "load":

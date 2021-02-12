@@ -826,6 +826,7 @@ MonoBehaviour:
   mainSelector: {fileID: 1523583801}
   loader: {fileID: 0}
   saver: {fileID: 0}
+  loadButton: {fileID: 0}
 --- !u!1 &123880855
 GameObject:
   m_ObjectHideFlags: 0
@@ -1218,6 +1219,7 @@ MonoBehaviour:
   mainSelector: {fileID: 1523583801}
   loader: {fileID: 0}
   saver: {fileID: 0}
+  loadButton: {fileID: 0}
 --- !u!1 &137413725
 GameObject:
   m_ObjectHideFlags: 0
@@ -2930,7 +2932,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 901401504}
+      - m_Target: {fileID: 519420041}
         m_MethodName: UpdateEffects
         m_Mode: 0
         m_Arguments:
@@ -2941,7 +2943,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 901401504}
+      - m_Target: {fileID: 519420041}
         m_MethodName: PlayTestedEffect
         m_Mode: 1
         m_Arguments:
@@ -55952,6 +55954,7 @@ GameObject:
   - component: {fileID: 519420038}
   - component: {fileID: 519420039}
   - component: {fileID: 519420040}
+  - component: {fileID: 519420041}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -56227,6 +56230,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menuContainer: {fileID: 1141852767}
+  optionsContainer: {fileID: 958848229}
+  mainContainer: {fileID: 1523583801}
 --- !u!114 &519420039
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -56249,6 +56254,7 @@ MonoBehaviour:
   screenBlocker: {fileID: 344113254}
   attackKeyChanger: {fileID: 164390637}
   eqKeyChanger: {fileID: 123880855}
+  menuContainer: {fileID: 1141852767}
   mainMenuSettingObjects:
   - {fileID: 1387428620}
   - {fileID: 101766348}
@@ -56330,6 +56336,35 @@ MonoBehaviour:
   Brightness: 0
   Contrast: 0
   Sharpness: 0
+--- !u!114 &519420041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e7295d15bd43dd4abd654647a9bb9d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effectSources:
+  - {fileID: 1425222920}
+  - {fileID: 1823423206}
+  - {fileID: 557097508}
+  - {fileID: 519420028}
+  musicSources:
+  - {fileID: 1119911262}
+  speechSources:
+  - {fileID: 1047375986}
+  effectSlider: {fileID: 163175804}
+  musicSlider: {fileID: 672747311}
+  speechSlider: {fileID: 1331044430}
+  effectsTester: {fileID: 1425222920}
+  speechTester: {fileID: 1047375986}
+  effectVelocity: 100
+  musicVelocity: 100
+  speechVelocity: 100
 --- !u!1 &521536546
 GameObject:
   m_ObjectHideFlags: 0
@@ -109851,7 +109886,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 901401504}
+      - m_Target: {fileID: 519420041}
         m_MethodName: UpdateMusic
         m_Mode: 0
         m_Arguments:
@@ -111338,66 +111373,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.6535306, y: 0.12433028}
   m_EdgeRadius: 0
---- !u!1 &901401502
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 901401503}
-  - component: {fileID: 901401504}
-  m_Layer: 0
-  m_Name: VelocityManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &901401503
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 901401502}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.29, y: 0.40999997, z: 4.075015}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1141852768}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &901401504
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 901401502}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e7295d15bd43dd4abd654647a9bb9d1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  effectSources:
-  - {fileID: 1425222920}
-  - {fileID: 1823423206}
-  - {fileID: 557097508}
-  - {fileID: 519420028}
-  musicSources:
-  - {fileID: 1119911262}
-  speechSources:
-  - {fileID: 1047375986}
-  effectSlider: {fileID: 163175804}
-  musicSlider: {fileID: 672747311}
-  speechSlider: {fileID: 1331044430}
-  effectsTester: {fileID: 1425222920}
-  speechTester: {fileID: 1047375986}
-  effectVelocity: 100
-  musicVelocity: 100
-  speechVelocity: 100
 --- !u!1 &907862512
 GameObject:
   m_ObjectHideFlags: 0
@@ -113351,7 +113326,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1141852768}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &1047375988
 AudioSource:
@@ -114254,7 +114229,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1141852768}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &1119911264
 AudioSource:
@@ -114626,7 +114601,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1141852768
 Transform:
   m_ObjectHideFlags: 0
@@ -114640,7 +114615,6 @@ Transform:
   m_Children:
   - {fileID: 1523583802}
   - {fileID: 958848230}
-  - {fileID: 901401503}
   - {fileID: 1047375987}
   - {fileID: 1119911263}
   - {fileID: 1425222921}
@@ -115766,7 +115740,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 901401504}
+      - m_Target: {fileID: 519420041}
         m_MethodName: UpdateSpeech
         m_Mode: 0
         m_Arguments:
@@ -115777,7 +115751,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 901401504}
+      - m_Target: {fileID: 519420041}
         m_MethodName: PlayTestedSpeech
         m_Mode: 1
         m_Arguments:
@@ -116077,6 +116051,7 @@ MonoBehaviour:
   mainSelector: {fileID: 1523583801}
   loader: {fileID: 1868863449}
   saver: {fileID: 1346742269}
+  loadButton: {fileID: 0}
 --- !u!1 &1350832165
 GameObject:
   m_ObjectHideFlags: 0
@@ -116306,6 +116281,7 @@ MonoBehaviour:
   mainSelector: {fileID: 1523583801}
   loader: {fileID: 0}
   saver: {fileID: 0}
+  loadButton: {fileID: 0}
 --- !u!1 &1394102991
 GameObject:
   m_ObjectHideFlags: 0
@@ -116896,7 +116872,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1141852768}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &1425222922
 AudioSource:
@@ -123812,6 +123788,7 @@ MonoBehaviour:
   mainSelector: {fileID: 1523583801}
   loader: {fileID: 0}
   saver: {fileID: 0}
+  loadButton: {fileID: 0}
 --- !u!1 &2042954832
 GameObject:
   m_ObjectHideFlags: 0

@@ -21,7 +21,8 @@ public class DamageManager : MonoBehaviour
 
     void OnEnable()
     {
-        if (File.Exists(Application.dataPath + "/Resources/save.txt") && GameSaver.load)
+        healthAmount = 100;
+        if (File.Exists(Application.dataPath + "/Resources/save.txt") && GameSaver.load == true)
         {
             File.ReadAllText(Application.dataPath + "/Resources/save.txt");
             StreamReader tr = new StreamReader(Application.dataPath + "/Resources/save.txt", true);

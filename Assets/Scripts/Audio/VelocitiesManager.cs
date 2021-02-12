@@ -15,22 +15,24 @@ public class VelocitiesManager : MonoBehaviour
         if (!File.Exists(Application.dataPath + "/Resources/velocityConfig.txt"))
         {
             UpdateVelocites(true, true, true);
-        }
-        File.ReadAllText(Application.dataPath + "/Resources/velocityConfig.txt");
-        StreamReader tr = new StreamReader(Application.dataPath + "/Resources/velocityConfig.txt", true);
-        String[] velocities =  tr.ReadLine().Trim().Split('-');
-        tr.Close();
-        effectVelocity = Int32.Parse(velocities[0]);
-        musicVelocity = Int32.Parse(velocities[1]);
-        speechVelocity = Int32.Parse(velocities[2]);
-        if (effectSlider != null) effectSlider.GetComponent<UnityEngine.UI.Slider>().value = effectVelocity;
-        if (musicSlider != null) musicSlider.GetComponent<UnityEngine.UI.Slider>().value = musicVelocity;
-        if (speechSlider != null) speechSlider.GetComponent<UnityEngine.UI.Slider>().value = speechVelocity;
-        UpdateVelocites(true, true, true);
-        if (effectsTester != null && speechTester != null)
+        } else
         {
-            effectsTester.GetComponent<AudioSource>().mute = true;
-            speechTester.GetComponent<AudioSource>().mute = true;
+            File.ReadAllText(Application.dataPath + "/Resources/velocityConfig.txt");
+            StreamReader tr = new StreamReader(Application.dataPath + "/Resources/velocityConfig.txt", true);
+            String[] velocities =  tr.ReadLine().Trim().Split('-');
+            tr.Close();
+            effectVelocity = Int32.Parse(velocities[0]);
+            musicVelocity = Int32.Parse(velocities[1]);
+            speechVelocity = Int32.Parse(velocities[2]);
+            if (effectSlider != null) effectSlider.GetComponent<UnityEngine.UI.Slider>().value = effectVelocity;
+            if (musicSlider != null) musicSlider.GetComponent<UnityEngine.UI.Slider>().value = musicVelocity;
+            if (speechSlider != null) speechSlider.GetComponent<UnityEngine.UI.Slider>().value = speechVelocity;
+            UpdateVelocites(true, true, true);
+            if (effectsTester != null && speechTester != null)
+            {
+                effectsTester.GetComponent<AudioSource>().mute = true;
+                speechTester.GetComponent<AudioSource>().mute = true;
+            }
         }
     }
 
