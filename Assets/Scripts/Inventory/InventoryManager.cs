@@ -30,7 +30,7 @@ public class InventoryManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(SettingsManager.keySetup["eq"]) && !isOpen && GetComponent<DamageManager>().healthAmount > 0 && !menuContainer.activeInHierarchy)
+        if (Input.GetKeyDown(SettingsManager.keySetup["eq"]) && !isOpen && DamageManager.healthAmount > 0 && !menuContainer.activeInHierarchy)
         {
             OpenInventory();
         }

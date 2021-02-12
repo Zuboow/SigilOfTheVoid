@@ -13,7 +13,7 @@ public class LayingItemDescription : MonoBehaviour
 
     void OnMouseOver()
     {
-        if (Vector2.Distance(player.transform.position, transform.position) < 0.55 && descriptionText == null && referenceObject.GetComponent<DamageManager>().healthAmount > 0)
+        if (Vector2.Distance(player.transform.position, transform.position) < 0.55 && descriptionText == null && DamageManager.healthAmount > 0)
         {
             GameObject descriptionSpawner = new GameObject();
             descriptionSpawner.AddComponent<TextMesh>();
@@ -30,7 +30,7 @@ public class LayingItemDescription : MonoBehaviour
             descriptionText.GetComponent<TextMesh>().font = pixelatedFont;
             descriptionText.GetComponent<MeshRenderer>().material = pixelatedFont.material;
         }
-        if ((Vector2.Distance(player.transform.position, transform.position) >= 0.55 && descriptionText != null) || referenceObject.GetComponent<DamageManager>().healthAmount <= 0)
+        if ((Vector2.Distance(player.transform.position, transform.position) >= 0.55 && descriptionText != null) || DamageManager.healthAmount <= 0)
         {
             Destroy(descriptionText);
             descriptionText = null;

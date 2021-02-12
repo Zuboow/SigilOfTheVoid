@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using System.Linq;
+using System.IO;
 
 public class DamageManager : MonoBehaviour
 {
@@ -15,11 +16,21 @@ public class DamageManager : MonoBehaviour
     public List<AudioClip> hitEffects = new List<AudioClip>();
     float nextPositionOffset = 0f, deathScreenTime = 5f;
     private List<GameObject> hearts = new List<GameObject>();
-    public int healthAmount = 100, maxHealth = 100;
+    public static int healthAmount = 100, maxHealth = 100;
     bool dead = false;
 
     void OnEnable()
     {
+        healthAmount = 100;
+        if (File.Exists(Application.dataPath + "/Resources/save.txt") && GameSaver.load == true)
+        {
+            File.ReadAllText(Application.dataPath + "/Resources/save.txt");
+            StreamReader tr = new StreamReader(Application.dataPath + "/Resources/save.txt", true);
+            string[] values = tr.ReadLine().Trim().Split('%');
+            tr.Close();
+            healthAmount = Int32.Parse(values[5]);
+        }
+
         Hero_Movement.alive = true;
         RecalculateHearts();
     }

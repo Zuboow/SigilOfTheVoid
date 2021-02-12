@@ -77,7 +77,7 @@ public class EntityMovement : MonoBehaviour
 
     public void Attack()
     {
-        if (Vector3.Distance(player.transform.position, transform.position) > 1f || camera.GetComponent<DamageManager>().healthAmount <= 0)
+        if (Vector3.Distance(player.transform.position, transform.position) > 1f || DamageManager.healthAmount <= 0)
         {
             reaction = "Idle";
         }

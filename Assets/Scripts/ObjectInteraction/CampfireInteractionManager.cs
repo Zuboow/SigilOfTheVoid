@@ -14,6 +14,20 @@ public class CampfireInteractionManager : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
     }
 
+    public void ManageStatus()
+    {
+        switch (status)
+        {
+            case 2:
+                campfireAnimator.SetInteger("status", status);
+                break;
+            case 3:
+                GetComponent<AudioSource>().mute = false;
+                campfireAnimator.SetInteger("status", status);
+                break;
+        }
+    }
+
     private void FixedUpdate()
     {
         if (!GetComponent<AudioSource>().mute)
@@ -25,7 +39,7 @@ public class CampfireInteractionManager : MonoBehaviour
 
     void OnMouseOver()
     {
-        if (Input.GetMouseButtonDown(0) && referenceObject.GetComponent<DamageManager>().healthAmount > 0)
+        if (Input.GetMouseButtonDown(0) && DamageManager.healthAmount > 0)
         {
             if (Vector2.Distance(player.transform.position, transform.position) < 0.55)
             {

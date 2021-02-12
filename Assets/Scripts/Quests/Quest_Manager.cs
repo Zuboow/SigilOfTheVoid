@@ -24,7 +24,7 @@ public class Quest_Manager : MonoBehaviour
 
     private void OnMouseOver()
     {
-        if (Input.GetMouseButtonDown(0) && referenceObject.GetComponent<DamageManager>().healthAmount > 0
+        if (Input.GetMouseButtonDown(0) && DamageManager.healthAmount > 0
             && !ItemReplacer.itemDragged && Vector2.Distance(player.transform.position, transform.position) < 0.55)
         {
             switch (questState)
@@ -43,13 +43,11 @@ public class Quest_Manager : MonoBehaviour
     {
         if (!killedEnemies.ContainsKey(enemyName))
         {
-            Debug.Log(enemyName + " added to killed enemies list.");
             killedEnemies.Add(enemyName, 1);
         }
         else
         {
             killedEnemies[enemyName] = killedEnemies[enemyName] + 1;
-            Debug.Log(enemyName + " killed: " + killedEnemies[enemyName]);
         }
     }
 

@@ -9,6 +9,8 @@ TagManager:
   - DropdownRes
   - QuestGiver
   - MainMenuSetting
+  - Destroyable
+  - Unique
   layers:
   - Default
   - TransparentFX
