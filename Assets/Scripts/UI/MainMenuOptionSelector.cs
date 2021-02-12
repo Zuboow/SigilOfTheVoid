@@ -17,7 +17,7 @@ public class MainMenuOptionSelector : MonoBehaviour
         }
         if (name == "save")
         {
-            if (File.Exists(Application.dataPath + "/Resources/save.txt") && DamageManager.healthAmount > 0)
+            if ((File.Exists(Application.dataPath + "/Resources/save.txt") && DamageManager.healthAmount > 0) || !File.Exists(Application.dataPath + "/Resources/save.txt"))
                 saver.GetComponent<Text>().color = new Color32(255, 255, 255, 255);
             else
                 saver.GetComponent<Text>().color = new Color32(108, 108, 108, 255);
