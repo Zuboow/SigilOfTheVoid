@@ -42,7 +42,6 @@ public class MainMenuOptionSelector : MonoBehaviour
             {
                 case "newGame":
                     GameSaver.gameObjectTransforms = new Dictionary<string, Vector3>();
-                    InventoryManager.loadedItemsInInventory = new List<Item>();
                     SceneManager.LoadScene("Game");
                     break;
                 case "load":

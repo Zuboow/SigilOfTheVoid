@@ -133,11 +133,6 @@ public class GameSaver : MonoBehaviour
         {
             loadButton.GetComponent<Text>().color = new Color32(255, 255, 255, 255);
         }
-
-        List<Item> items = new List<Item>();
-        items.AddRange(InventoryManager.itemsInInventory);
-        InventoryManager.loadedItemsInInventory = items;
-
         //
         string gameObjectTransformsString = "";
         foreach (KeyValuePair<string, Vector3> pair in gameObjectTransforms)
@@ -169,10 +164,15 @@ public class GameSaver : MonoBehaviour
         {
             questGiverValuesString += pair.Key + "#" + pair.Value[0] + "#" + pair.Value[1] + "#" + pair.Value[2] + "^";
         }
+        string itemsString = "";
+        foreach (Item i in InventoryManager.itemsInInventory)
+        {
+            itemsString += i != null ? i.spriteName + "^" : "EMPTY^";
+        }
         File.WriteAllText(Application.dataPath + "/Resources/save.txt", String.Empty);
         TextWriter tw = new StreamWriter(Application.dataPath + "/Resources/save.txt", true);
         tw.WriteLine(gameObjectTransformsString + "%" + objectsWithStatusesListString + "%" + uniqueObjectsListString + "%" + destroyableObjectsListString + "%" + questGiverValuesString + "%" + 
-            DamageManager.healthAmount);
+            DamageManager.healthAmount + "%" + itemsString);
         tw.Close();
     }
 
@@ -238,6 +238,26 @@ public class GameSaver : MonoBehaviour
                 questGiverValues.Add(vList[0], new string[] { vList[1], vList[2], vList[3] });
             }
         }
+        string[] parsedItems = values[6].Split('^');
+        List<Item> loadedItemsInInventory = new List<Item>();
+        foreach (string s in parsedItems)
+        {
+            if (s == "EMPTY")
+            {
+                loadedItemsInInventory.Add(null);
+            } else
+            {
+                TextAsset jsonData = InventoryManager.itemsJsonFile;
+                Items v = JsonUtility.FromJson<Items>(jsonData.text);
+                foreach (Item i in v.items)
+                {
+                    if (s == i.spriteName)
+                    {
+                        loadedItemsInInventory.Add(new Item(i.spriteName, i.name, i.description, i.value, i.quantity, SpriteLoader.LoadSprite(i.spriteName), i.usableItem, i.healing));
+                    }
+                }
+            }
+        }
         //
         foreach (GameObject gObject in gameObjects)
         {
@@ -271,6 +291,7 @@ public class GameSaver : MonoBehaviour
             g.GetComponent<Quest_Manager>().questAvailable = (questGiverValues[g.name][1] == "true" ? true : false);
             g.GetComponent<Quest_Manager>().noRequirementQuestStarted = (questGiverValues[g.name][2] == "true" ? true : false);
         }
+        InventoryManager.itemsInInventory = loadedItemsInInventory;
 
         load = false;
     }
