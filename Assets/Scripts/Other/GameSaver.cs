@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
@@ -15,6 +17,7 @@ public class GameSaver : MonoBehaviour
     public static Dictionary<string, int> objectsWithStatusesList = new Dictionary<string, int>();
     public static Dictionary<string, GameObject> destroyableObjectsList = new Dictionary<string, GameObject>();
     public static Dictionary<string, string[]> questGiverValues = new Dictionary<string, string[]>();
+    public static bool load = false;
 
     private void OnEnable()
     {
@@ -22,17 +25,17 @@ public class GameSaver : MonoBehaviour
         questGivers = GameObject.FindGameObjectsWithTag("QuestGiver");
         destroyableObjects = GameObject.FindGameObjectsWithTag("Destroyable");
 
-        if (gameObjectTransforms.Count > 0)
+        if (File.Exists(Application.dataPath + "/Resources/save.txt"))
         {
-            LoadGameObjectTransform();
-        }
-        if (gameObjectTransforms.Count == 0)
-        {
-            loadButton.GetComponent<Text>().color = new Color32(108, 108, 108, 255);
+            if (load)
+            {
+                LoadGameObjectTransform();
+            }
+            //loadButton.GetComponent<Text>().color = new Color32(255, 255, 255, 255);
         }
         else
         {
-            loadButton.GetComponent<Text>().color = new Color32(255, 255, 255, 255);
+            //loadButton.GetComponent<Text>().color = new Color32(108, 108, 108, 255);
         }
     }
     public void SaveGameObjectTransform()
@@ -135,10 +138,107 @@ public class GameSaver : MonoBehaviour
         List<Item> items = new List<Item>();
         items.AddRange(InventoryManager.itemsInInventory);
         InventoryManager.loadedItemsInInventory = items;
+
+        //
+        string gameObjectTransformsString = "";
+        foreach (KeyValuePair<string, Vector3> pair in gameObjectTransforms)
+        {
+            gameObjectTransformsString += pair.Key + "#" + pair.Value + "^";
+        }
+        string objectsWithStatusesListString = "";
+        foreach (KeyValuePair<string, int> pair in objectsWithStatusesList)
+        {
+            switch (pair.Key)
+            {
+                case "Campfire":
+                    objectsWithStatusesListString += pair.Key + "#" + pair.Value + "^";
+                    break;
+            }
+        }
+        string uniqueObjectsListString = "";
+        foreach (KeyValuePair<string, GameObject> pair in uniqueObjectsList)
+        {
+            uniqueObjectsListString += pair.Key + "^";
+        }
+        string destroyableObjectsListString = "";
+        foreach (KeyValuePair<string, GameObject> pair in destroyableObjectsList)
+        {
+            destroyableObjectsListString += pair.Key + "^";
+        }
+        string questGiverValuesString = "";
+        foreach (KeyValuePair<string, string[]> pair in questGiverValues)
+        {
+            questGiverValuesString += pair.Key + "#" + pair.Value[0] + "#" + pair.Value[1] + "#" + pair.Value[2] + "^";
+        }
+        File.WriteAllText(Application.dataPath + "/Resources/save.txt", String.Empty);
+        TextWriter tw = new StreamWriter(Application.dataPath + "/Resources/save.txt", true);
+        tw.WriteLine(gameObjectTransformsString + "%" + objectsWithStatusesListString + "%" + uniqueObjectsListString + "%" + destroyableObjectsListString + "%" + questGiverValuesString);
+        tw.Close();
     }
 
     public void LoadGameObjectTransform()
     {
+        File.ReadAllText(Application.dataPath + "/Resources/save.txt");
+        StreamReader tr = new StreamReader(Application.dataPath + "/Resources/save.txt", true);
+        string[] values = tr.ReadLine().Trim().Split('%');
+        tr.Close();
+
+        gameObjectTransforms = new Dictionary<string, Vector3>();
+        objectsWithStatusesList = new Dictionary<string, int>();
+        uniqueObjectsList = new Dictionary<string, GameObject>();
+        destroyableObjectsList = new Dictionary<string, GameObject>();
+        questGiverValues = new Dictionary<string, string[]>();
+
+        //
+        string[] parsedGameObjects = values[0].Split('^');
+        foreach (string s in parsedGameObjects)
+        {
+            if (s.Length > 0)
+            {
+                string vectors = s.Split('#')[1];
+                vectors = vectors.Remove(0, 1);
+                vectors = vectors.Remove(vectors.Length - 1, 1);
+                string[] vList = vectors.Split(',');
+
+                gameObjectTransforms.Add(s.Split('#')[0], new Vector3(float.Parse(vList[0].Trim(), CultureInfo.InvariantCulture), float.Parse(vList[1].Trim(), CultureInfo.InvariantCulture), 
+                    float.Parse(vList[2].Trim(), CultureInfo.InvariantCulture)));
+            }
+        }
+        string[] parsedObjectsStatuses = values[1].Split('^');
+        foreach (string s in parsedObjectsStatuses)
+        {
+            if (s.Length > 0)
+            {
+                objectsWithStatusesList.Add(s.Split('#')[0], Int32.Parse(s.Split('#')[1]));
+            }
+        }
+        string[] parsedUniqueObjects = values[2].Split('^');
+        foreach (string s in parsedUniqueObjects)
+        {
+            if (s.Length > 0)
+            {
+                uniqueObjectsList.Add(s, new GameObject());
+            }
+        }
+        string[] parsedDestroyableObjects = values[3].Split('^');
+        foreach (string s in parsedDestroyableObjects)
+        {
+            if (s.Length > 0)
+            {
+                destroyableObjectsList.Add(s, new GameObject());
+            }
+        }
+        string[] parsedQuestGivers = values[4].Split('^');
+        foreach (string s in parsedQuestGivers)
+        {
+            if (s.Length > 0)
+            {
+                string[] vList = s.Split('#');
+
+                questGiverValues.Add(vList[0], new string[] { vList[1], vList[2], vList[3] });
+            }
+        }
+        //
         foreach (GameObject gObject in gameObjects)
         {
             gObject.transform.position = gameObjectTransforms[gObject.name];
@@ -171,6 +271,8 @@ public class GameSaver : MonoBehaviour
             g.GetComponent<Quest_Manager>().questAvailable = (questGiverValues[g.name][1] == "true" ? true : false);
             g.GetComponent<Quest_Manager>().noRequirementQuestStarted = (questGiverValues[g.name][2] == "true" ? true : false);
         }
+
+        load = false;
     }
 
 }

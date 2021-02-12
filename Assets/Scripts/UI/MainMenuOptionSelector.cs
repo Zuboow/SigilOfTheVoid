@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -14,7 +15,13 @@ public class MainMenuOptionSelector : MonoBehaviour
         {
             optionsSelector.SetActive(false);
         }
-        
+        if (name == "load")
+        {
+            if (File.Exists(Application.dataPath + "/Resources/save.txt"))
+            loader.GetComponent<Text>().color = new Color32(255, 255, 255, 255);
+            else
+            loader.GetComponent<Text>().color = new Color32(108, 108, 108, 255);
+        }
     }
 
     void OnMouseOver()
@@ -29,8 +36,9 @@ public class MainMenuOptionSelector : MonoBehaviour
                     SceneManager.LoadScene("Game");
                     break;
                 case "load":
-                    if (GameSaver.gameObjectTransforms.Count > 0)
+                    if (File.Exists(Application.dataPath + "/Resources/save.txt"))
                     {
+                        GameSaver.load = true;
                         SceneManager.LoadScene("Game");
                     }
                     break;

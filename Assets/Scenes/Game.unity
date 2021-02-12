@@ -824,7 +824,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   optionsSelector: {fileID: 958848229}
   mainSelector: {fileID: 1523583801}
-  loader: {fileID: 0}
+  loader: {fileID: 101766348}
 --- !u!1 &123880855
 GameObject:
   m_ObjectHideFlags: 0
@@ -115992,7 +115992,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -633.82, y: -100.2}
+  m_AnchoredPosition: {x: -633.82, y: -102}
   m_SizeDelta: {x: 461.35, y: 76.35}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!61 &1346742271
@@ -123725,7 +123725,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -633.8, y: -190}
+  m_AnchoredPosition: {x: -633.8, y: -195}
   m_SizeDelta: {x: 461.3, y: 83.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2032454499
