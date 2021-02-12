@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class MainMenuOptionSelector : MonoBehaviour
 {
-    public GameObject optionsSelector, mainSelector, loader;
+    public GameObject optionsSelector, mainSelector, loader, saver, loadButton;
 
     void OnEnable()
     {
@@ -15,12 +15,22 @@ public class MainMenuOptionSelector : MonoBehaviour
         {
             optionsSelector.SetActive(false);
         }
+        if (name == "save")
+        {
+            if (File.Exists(Application.dataPath + "/Resources/save.txt") && DamageManager.healthAmount > 0)
+                saver.GetComponent<Text>().color = new Color32(255, 255, 255, 255);
+            else
+                saver.GetComponent<Text>().color = new Color32(108, 108, 108, 255);
+        }
         if (name == "load")
         {
-            if (File.Exists(Application.dataPath + "/Resources/save.txt"))
-            loader.GetComponent<Text>().color = new Color32(255, 255, 255, 255);
-            else
-            loader.GetComponent<Text>().color = new Color32(108, 108, 108, 255);
+            if (loadButton != null)
+            {
+                if (File.Exists(Application.dataPath + "/Resources/save.txt"))
+                    loadButton.GetComponent<Text>().color = new Color32(255, 255, 255, 255);
+                else
+                    loadButton.GetComponent<Text>().color = new Color32(108, 108, 108, 255);
+            }
         }
     }
 
@@ -43,7 +53,8 @@ public class MainMenuOptionSelector : MonoBehaviour
                     }
                     break;
                 case "save":
-                    loader.GetComponent<GameSaver>().SaveGameObjectTransform();
+                    if (DamageManager.healthAmount > 0)
+                        loader.GetComponent<GameSaver>().SaveGameObjectTransform();
                     break;
                 case "settings":
                     optionsSelector.SetActive(true);

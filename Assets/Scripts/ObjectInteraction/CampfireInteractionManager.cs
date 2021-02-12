@@ -39,7 +39,7 @@ public class CampfireInteractionManager : MonoBehaviour
 
     void OnMouseOver()
     {
-        if (Input.GetMouseButtonDown(0) && referenceObject.GetComponent<DamageManager>().healthAmount > 0)
+        if (Input.GetMouseButtonDown(0) && DamageManager.healthAmount > 0)
         {
             if (Vector2.Distance(player.transform.position, transform.position) < 0.55)
             {

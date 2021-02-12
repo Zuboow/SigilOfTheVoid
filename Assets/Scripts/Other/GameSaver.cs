@@ -31,11 +31,10 @@ public class GameSaver : MonoBehaviour
             {
                 LoadGameObjectTransform();
             }
-            //loadButton.GetComponent<Text>().color = new Color32(255, 255, 255, 255);
-        }
-        else
+            loadButton.GetComponent<Text>().color = new Color32(255, 255, 255, 255);
+        } else
         {
-            //loadButton.GetComponent<Text>().color = new Color32(108, 108, 108, 255);
+            loadButton.GetComponent<Text>().color = new Color32(108, 108, 108, 255);
         }
     }
     public void SaveGameObjectTransform()
@@ -172,7 +171,8 @@ public class GameSaver : MonoBehaviour
         }
         File.WriteAllText(Application.dataPath + "/Resources/save.txt", String.Empty);
         TextWriter tw = new StreamWriter(Application.dataPath + "/Resources/save.txt", true);
-        tw.WriteLine(gameObjectTransformsString + "%" + objectsWithStatusesListString + "%" + uniqueObjectsListString + "%" + destroyableObjectsListString + "%" + questGiverValuesString);
+        tw.WriteLine(gameObjectTransformsString + "%" + objectsWithStatusesListString + "%" + uniqueObjectsListString + "%" + destroyableObjectsListString + "%" + questGiverValuesString + "%" + 
+            DamageManager.healthAmount);
         tw.Close();
     }
 

@@ -824,7 +824,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   optionsSelector: {fileID: 958848229}
   mainSelector: {fileID: 1523583801}
-  loader: {fileID: 101766348}
+  loader: {fileID: 0}
+  saver: {fileID: 0}
 --- !u!1 &123880855
 GameObject:
   m_ObjectHideFlags: 0
@@ -1216,6 +1217,7 @@ MonoBehaviour:
   optionsSelector: {fileID: 958848229}
   mainSelector: {fileID: 1523583801}
   loader: {fileID: 0}
+  saver: {fileID: 0}
 --- !u!1 &137413725
 GameObject:
   m_ObjectHideFlags: 0
@@ -56064,8 +56066,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: d8fccad99d07642499a1d32de6cc0b2e, type: 3}
   - {fileID: 8300000, guid: fa62724531aa0aa4dbfdecffbc49ba5c, type: 3}
   - {fileID: 8300000, guid: cfc1dc6953e5cb74caaba07b64ba63a2, type: 3}
-  healthAmount: 100
-  maxHealth: 100
 --- !u!114 &519420034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -116076,6 +116076,7 @@ MonoBehaviour:
   optionsSelector: {fileID: 958848229}
   mainSelector: {fileID: 1523583801}
   loader: {fileID: 1868863449}
+  saver: {fileID: 1346742269}
 --- !u!1 &1350832165
 GameObject:
   m_ObjectHideFlags: 0
@@ -116304,6 +116305,7 @@ MonoBehaviour:
   optionsSelector: {fileID: 958848229}
   mainSelector: {fileID: 1523583801}
   loader: {fileID: 0}
+  saver: {fileID: 0}
 --- !u!1 &1394102991
 GameObject:
   m_ObjectHideFlags: 0
@@ -123809,6 +123811,7 @@ MonoBehaviour:
   optionsSelector: {fileID: 958848229}
   mainSelector: {fileID: 1523583801}
   loader: {fileID: 0}
+  saver: {fileID: 0}
 --- !u!1 &2042954832
 GameObject:
   m_ObjectHideFlags: 0
