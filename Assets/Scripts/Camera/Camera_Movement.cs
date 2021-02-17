@@ -17,7 +17,7 @@ public class Camera_Movement : MonoBehaviour
 
     void Update()
     {
-        transform.position = Vector3.Lerp(transform.position, hero.transform.position + offset, followSpeed * Time.deltaTime);
+        transform.position = Vector3.Lerp(transform.position, hero.transform.position + offset + new Vector3(0f, 0f, 0f), followSpeed * Time.deltaTime);
         if (shake) Shake();
     }
 

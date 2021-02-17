@@ -22,7 +22,7 @@ public class WeaponColliderController : MonoBehaviour
         switch (type)
         {
             case 0:
-                weaponCollider.GetComponent<BoxCollider2D>().offset = new Vector2(-0.002830744f, -0.1359826f);
+                weaponCollider.GetComponent<BoxCollider2D>().offset = new Vector2(-0.002830744f, -0.2059826f);
                 weaponCollider.GetComponent<BoxCollider2D>().size = new Vector2(0.3007965f, 0.1424822f);
                 break;
             case 1:
