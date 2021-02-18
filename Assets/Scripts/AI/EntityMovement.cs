@@ -88,7 +88,7 @@ public class EntityMovement : MonoBehaviour
         else if (Vector3.Distance(player.transform.position, transform.position) > 0.2f)
         {
             Vector3 reversedVector = (transform.position - player.transform.position) * -1;
-            transform.position = Vector3.MoveTowards(transform.position, player.transform.position + reversedVector, 0.4f * Time.deltaTime);
+            rigidBody.MovePosition(transform.position + 0.5f * reversedVector.normalized * Time.deltaTime);
             SetMovement(Vector3.Normalize(new Vector3(transform.position.x, transform.position.y, 0f) - (player.transform.position + reversedVector)));
         }
         else
@@ -100,9 +100,9 @@ public class EntityMovement : MonoBehaviour
                 if (attackTimer <= 0f)
                 {
                     entityAnimator.SetBool("Attack", true);
-                    camera.GetComponent<DamageManager>().DamagePlayer(Random.Range(-15, -4));
+                    camera.GetComponent<DamageManager>().DamagePlayer(Random.Range(-11, -26));
                     camera.GetComponent<Camera_Movement>().StartShaking();
-                    attackTimer = 1f;
+                    attackTimer = 0.5f;
                 }
                 else
                 {
