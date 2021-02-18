@@ -105,6 +105,8 @@ MonoBehaviour:
   randomizedItemsWithPercentage:
   - name: RawMeat
     percentageChance: 100
+  - name: VoidRabbitFur
+    percentageChance: 100
 --- !u!114 &185594449267064476
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -158,12 +160,12 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 6200000, guid: 66ead53adfdaf7d4ba8dabfc375d8eae, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 0
   m_CollisionDetection: 1
-  m_Constraints: 7
+  m_Constraints: 4
 --- !u!114 &5592775004505239058
 MonoBehaviour:
   m_ObjectHideFlags: 0

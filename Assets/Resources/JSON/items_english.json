@@ -79,6 +79,26 @@
 			"healing": 0,
 			"usableItem": false,
 			"icon": null
+		},
+		{
+			"spriteName": "VoidRabbitFur",
+			"name": "Void Rabbit's Fur",
+			"description": "Very soft, yet so dark...",
+			"value": 25,
+			"quantity": 1,
+			"healing": 0,
+			"usableItem": false,
+			"icon": null
+		},
+		{
+			"spriteName": "GoldNugget",
+			"name": "Gold Nuggets",
+			"description": "They are beautiful! Surely worth a lot!",
+			"value": 60,
+			"quantity": 1,
+			"healing": 0,
+			"usableItem": false,
+			"icon": null
 		}
 	]
 }

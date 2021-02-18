@@ -7,9 +7,11 @@ public class CavesInteraction : MonoBehaviour
 {
     public Vector3 offset;
     public GameObject location, screenBlackener;
-    public GameObject player, camera;
+    public GameObject player, camera, ambientPlayer;
     bool teleportation = false, teleportated = false, finished = false;
     float timeForBlackening = 1f, timeForWhitening = 1f;
+    public AudioClip caveAmbient, seaAmbient;
+    public bool caves;
 
     private void OnEnable()
     {
@@ -37,6 +39,16 @@ public class CavesInteraction : MonoBehaviour
                     player.transform.position = new Vector3(location.transform.position.x, location.transform.position.y, player.transform.position.z) + offset;
                     camera.transform.position = new Vector3(location.transform.position.x, location.transform.position.y, camera.transform.position.z) + offset;
                     teleportated = true;
+                    if (caves)
+                    {
+                        ambientPlayer.GetComponent<AudioSource>().clip = caveAmbient;
+                        ambientPlayer.GetComponent<AudioSource>().Play();
+                    }
+                    else
+                    {
+                        ambientPlayer.GetComponent<AudioSource>().clip = seaAmbient;
+                        ambientPlayer.GetComponent<AudioSource>().Play();
+                    }
                 }
                 screenBlackener.GetComponent<CanvasGroup>().alpha = timeForWhitening > 0f ? 0 + timeForWhitening : 1;
                 timeForWhitening -= Time.deltaTime;
