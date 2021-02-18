@@ -12,6 +12,7 @@ public class CampfireInteractionManager : MonoBehaviour
     {
         referenceObject = GameObject.FindGameObjectWithTag("MainCamera");
         player = GameObject.FindGameObjectWithTag("Player");
+        ManageStatus();
     }
 
     public void ManageStatus()
