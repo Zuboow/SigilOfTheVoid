@@ -47,7 +47,7 @@
 			"value": 18,
 			"quantity": 1,
 			"healing": 8,
-			"usableItem": true,
+			"usableItem": false,
 			"icon": null
 		},
 		{
@@ -75,6 +75,26 @@
 			"name": "Granny's Staff",
 			"description": "Looks old...",
 			"value": 12,
+			"quantity": 1,
+			"healing": 0,
+			"usableItem": false,
+			"icon": null
+		},
+		{
+			"spriteName": "VoidRabbitFur",
+			"name": "Void Rabbit's Fur",
+			"description": "Very soft, yet so dark...",
+			"value": 25,
+			"quantity": 1,
+			"healing": 0,
+			"usableItem": false,
+			"icon": null
+		},
+		{
+			"spriteName": "GoldNugget",
+			"name": "Gold Nuggets",
+			"description": "They are beautiful! Surely worth a lot!",
+			"value": 60,
 			"quantity": 1,
 			"healing": 0,
 			"usableItem": false,

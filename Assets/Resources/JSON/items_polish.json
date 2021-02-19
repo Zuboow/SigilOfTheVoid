@@ -2,7 +2,7 @@
 	"items": [
 		{
 			"spriteName": "CookedMeat",
-			"name": "Pieczone mieso",
+			"name": "Pieczone Mieso",
 			"description": "Wysokobialkowe. Bardzo popularne w Galii.",
 			"value": 7,
 			"quantity": 1,
@@ -12,7 +12,7 @@
 		},
 		{
 			"spriteName": "RawMeat",
-			"name": "Surowe mieso",
+			"name": "Surowe Mieso",
 			"description": "Jestem pewien, ze powinienem je upiec...",
 			"value": 3,
 			"quantity": 1,
@@ -47,12 +47,12 @@
 			"value": 18,
 			"quantity": 1,
 			"healing": 8,
-			"usableItem": true,
+			"usableItem": false,
 			"icon": null
 		},
 		{
 			"spriteName": "DeadMouse",
-			"name": "Martwa mysz",
+			"name": "Martwa Mysz",
 			"description": "Koty uwielbiaja sie bawic...tym. Fuj...",
 			"value": 2,
 			"quantity": 1,
@@ -62,7 +62,7 @@
 		},
 		{
 			"spriteName": "CookedMouse",
-			"name": "Pieczona mysz",
+			"name": "Pieczona Mysz",
 			"description": "Mmmmmm, pyszne!",
 			"value": 3,
 			"quantity": 1,
@@ -75,6 +75,26 @@
 			"name": "Laska Babci",
 			"description": "Wyglada staro...",
 			"value": 12,
+			"quantity": 1,
+			"healing": 0,
+			"usableItem": false,
+			"icon": null
+		},
+		{
+			"spriteName": "VoidRabbitFur",
+			"name": "Futro Krolika Pustki",
+			"description": "Mieciutkie, ale bardzo mroczne...",
+			"value": 25,
+			"quantity": 1,
+			"healing": 0,
+			"usableItem": false,
+			"icon": null
+		},
+		{
+			"spriteName": "GoldNugget",
+			"name": "Brylki Zlota",
+			"description": "Sa piekne! Z pewnoscia sporo warte!",
+			"value": 60,
 			"quantity": 1,
 			"healing": 0,
 			"usableItem": false,

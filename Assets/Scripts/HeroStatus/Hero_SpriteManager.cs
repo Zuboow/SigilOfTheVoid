@@ -22,7 +22,7 @@ public class Hero_SpriteManager : MonoBehaviour
 
         if (alive)
         {
-            if (Input.GetKeyDown(SettingsManager.keySetup["attack"]))
+            if (Input.GetKey(SettingsManager.keySetup["attack"]))
             {
                 heroAnimator.SetBool("attack", true);
             } 
