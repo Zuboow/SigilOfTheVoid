@@ -138,11 +138,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   randomizedItemsWithPercentage:
   - name: WoodenLog
-    percentageChance: 40
+    percentageChance: 100
   - name: RawMeat
     percentageChance: 10
-  - name: Apple
-    percentageChance: 60
 --- !u!114 &4743613330580278964
 MonoBehaviour:
   m_ObjectHideFlags: 0

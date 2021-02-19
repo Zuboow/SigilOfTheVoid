@@ -10,14 +10,15 @@ using UnityEngine.UI;
 
 public class GameSaver : MonoBehaviour
 {
-    public GameObject loadButton;
+    public GameObject loadButton, ambientPlayer;
     public GameObject[] gameObjects, uniqueObjects, questGivers, destroyableObjects, objectsWithStatuses;
     public static Dictionary<string, Vector3> gameObjectTransforms = new Dictionary<string, Vector3>();
     public static Dictionary<string, GameObject> uniqueObjectsList = new Dictionary<string, GameObject>();
     public static Dictionary<string, int> objectsWithStatusesList = new Dictionary<string, int>();
     public static Dictionary<string, GameObject> destroyableObjectsList = new Dictionary<string, GameObject>();
     public static Dictionary<string, string[]> questGiverValues = new Dictionary<string, string[]>();
-    public static bool load = false;
+    public static bool load = false, inCaves = false;
+    public AudioClip seaTheme, cavesTheme;
 
     private void OnEnable()
     {
@@ -30,11 +31,18 @@ public class GameSaver : MonoBehaviour
             if (load)
             {
                 LoadGameObjectTransform();
+            } else
+            {
+                loadButton.GetComponent<Text>().color = new Color32(108, 108, 108, 255);
+                ambientPlayer.GetComponent<AudioSource>().clip = seaTheme;
+                ambientPlayer.GetComponent<AudioSource>().Play();
             }
             loadButton.GetComponent<Text>().color = new Color32(255, 255, 255, 255);
         } else
         {
             loadButton.GetComponent<Text>().color = new Color32(108, 108, 108, 255);
+            ambientPlayer.GetComponent<AudioSource>().clip = seaTheme;
+            ambientPlayer.GetComponent<AudioSource>().Play();
         }
     }
     public void SaveGameObjectTransform()
@@ -172,7 +180,7 @@ public class GameSaver : MonoBehaviour
         File.WriteAllText(Application.dataPath + "/Resources/save.txt", String.Empty);
         TextWriter tw = new StreamWriter(Application.dataPath + "/Resources/save.txt", true);
         tw.WriteLine(gameObjectTransformsString + "%" + objectsWithStatusesListString + "%" + uniqueObjectsListString + "%" + destroyableObjectsListString + "%" + questGiverValuesString + "%" + 
-            DamageManager.healthAmount + "%" + itemsString);
+            DamageManager.healthAmount + "%" + itemsString + "%" + inCaves);
         tw.Close();
     }
 
@@ -292,6 +300,18 @@ public class GameSaver : MonoBehaviour
             g.GetComponent<Quest_Manager>().noRequirementQuestStarted = (questGiverValues[g.name][2] == "true" ? true : false);
         }
         InventoryManager.itemsInInventory = loadedItemsInInventory;
+        inCaves = values[7] == "True" ? true : false;
+
+        if (inCaves)
+        {
+            ambientPlayer.GetComponent<AudioSource>().clip = cavesTheme;
+            ambientPlayer.GetComponent<AudioSource>().Play();
+        }
+        else
+        {
+            ambientPlayer.GetComponent<AudioSource>().clip = seaTheme;
+            ambientPlayer.GetComponent<AudioSource>().Play();
+        }
 
         load = false;
     }

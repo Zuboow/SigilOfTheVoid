@@ -47,7 +47,7 @@
 			"value": 18,
 			"quantity": 1,
 			"healing": 8,
-			"usableItem": true,
+			"usableItem": false,
 			"icon": null
 		},
 		{

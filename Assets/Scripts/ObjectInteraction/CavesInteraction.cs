@@ -43,11 +43,13 @@ public class CavesInteraction : MonoBehaviour
                     {
                         ambientPlayer.GetComponent<AudioSource>().clip = caveAmbient;
                         ambientPlayer.GetComponent<AudioSource>().Play();
+                        GameSaver.inCaves = true;
                     }
                     else
                     {
                         ambientPlayer.GetComponent<AudioSource>().clip = seaAmbient;
                         ambientPlayer.GetComponent<AudioSource>().Play();
+                        GameSaver.inCaves = false;
                     }
                 }
                 screenBlackener.GetComponent<CanvasGroup>().alpha = timeForWhitening > 0f ? 0 + timeForWhitening : 1;
